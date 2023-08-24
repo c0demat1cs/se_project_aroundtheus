@@ -76,19 +76,21 @@
 
 .cards {
   /* fonts */
+  margin-top: 30px;
 }
 
 .card__list {
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(auto-fit, 282px);
-  /* grid-gap: 17px 20px; */
+  grid-gap: 20px 17px;
+  padding: 0;
 }
 
 .card {
   display: flex;
   flex-direction: column;
-  border-radius: 10px;
+  list-style: none;
 }
 
 .card__image {
@@ -104,6 +106,7 @@
   padding: 25px 20px;
   align-items: center;
   justify-content: space-between;
+  border-radius: 0 0 10px 10px;
 }
 
 .card__like-button {

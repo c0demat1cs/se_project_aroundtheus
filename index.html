@@ -3,14 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta content="ie=edge" htt-quip="X-UA-Compatible" />
     <title>Around The U.S</title>
     <link href="./pages/index.css" rel="stylesheet" />
   </head>
   <body class="page">
     <div class="page__content">
       <header class="header page__section">
-        <img src="./images/logo.svg" alt="Around the U.S. logo" />
+        <div class="header__logo">
+          <img
+            src="./images/logo.svg"
+            alt="Around the U.S. logo"
+            class="logo"
+          />
+        </div>
       </header>
       <main class="content">
         <section class="profile page__section">
@@ -31,7 +36,7 @@
               class="card__image"
             />
             <div class="card__description">
-              <h2>Yosemite Valley</h2>
+              <p class="card__title">Yosemite Valley</p>
               <button class="card__like-button"></button>
             </div>
           </li>
@@ -42,7 +47,7 @@
               class="card__image"
             />
             <div class="card__description">
-              <h2>Lake Louise</h2>
+              <p class="card__title">Lake Louise</p>
               <button class="card__like-button"></button>
             </div>
           </li>
@@ -53,7 +58,7 @@
               class="card__image"
             />
             <div class="card__description">
-              <h2>Bald Mountains</h2>
+              <p class="card__title">Bald Mountains</p>
               <button class="card__like-button"></button>
             </div>
           </li>
@@ -64,7 +69,7 @@
               class="card__image"
             />
             <div class="card__description">
-              <h2>Latemar</h2>
+              <p class="card__title">Latemar</p>
               <button class="card__like-button"></button>
             </div>
           </li>
@@ -75,7 +80,7 @@
               class="card__image"
             />
             <div class="card__description">
-              <h2>Vanoise National Park</h2>
+              <p class="card__title">Vanoise National Park</p>
               <button class="card__like-button"></button>
             </div>
           </li>
@@ -86,12 +91,17 @@
               class="card__image"
             />
             <div class="card__description">
-              <h2>Lago di Braies</h2>
+              <p class="card__title">Lago di Braies</p>
               <button class="card__like-button"></button>
             </div>
           </li>
         </ul>
       </main>
+      <footer class="footer">
+        <div class="footer__content">
+          <p class="footer__copyright">&copy; 2022 Around The U.S.</p>
+        </div>
+      </footer>
     </div>
   </body>
 </html>

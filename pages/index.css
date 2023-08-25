@@ -24,6 +24,14 @@
 }
 
 @media screen and (max-width: 620px) {
+  .page__content {
+    padding: 0;
+  }
+
+  .logo {
+    padding-left: 20px;
+  }
+
   .profile {
     display: flex;
     flex-direction: column;

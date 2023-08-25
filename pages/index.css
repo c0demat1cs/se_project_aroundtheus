@@ -36,6 +36,7 @@
 
   .logo {
     padding-left: 20px;
+    max-width: 126px;
   }
 
   .profile {

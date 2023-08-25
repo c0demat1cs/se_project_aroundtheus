@@ -21,6 +21,12 @@
   .profile__add-button {
     margin-left: auto;
   }
+
+  .footer__copyright {
+    font-size: 14px;
+    line-height: 16.94px;
+    padding-left: 91px;
+  }
 }
 
 @media screen and (max-width: 620px) {

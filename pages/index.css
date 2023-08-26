@@ -16,14 +16,11 @@
   .profile__add-button {
     width: 150px;
     margin-left: 50px;
+    margin-left: auto;
   }
 
   .profile__title {
     font-size: 32px;
-  }
-
-  .profile__add-button {
-    margin-left: auto;
   }
 
   .footer__copyright {

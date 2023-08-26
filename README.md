@@ -1,21 +1,30 @@
 # Project 3: Around The U.S.
 
-### Overview
+This project involves creating an interactive webpage where users can add and remove photos, like photos of other users, and make minor adjustments to their own profiles. The project focuses on responsive design, using Figma for design assets, and implementing various coding techniques.
 
-- Intro
-- Figma
+## Project Features
+
+- Semantic HTML5
+- Flexbox
+- Positioning
+- Flat BEM file structure
+- A custom form
+- Grid
+- Responsive design with media queries
+  ![mobile view](../images/mobile.view.png)
 - Images
+  ![cards ](../images/cards.png)
+- Handling text overflow
+  ![text overlow](../images/textoverflow.png)
 
-**Intro**
+## Repository
 
-This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.
+![repo](https://github.com/c0demat1cs/se_project_aroundtheus.git)
 
-**Figma**
+## Plan on improving the project
 
-- [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)
-
-**Images**
-
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster.
-
-Good luck and have fun!
+- Add funtionality to the profile edit button, add button, and like buttons.
+- Make images clickable that takes the viewer to a new page featuring the that image.
+- Add comment section to images.
+- Add animation to like buttons.
+- Make all aspects of the profile editable.

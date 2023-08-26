@@ -9,6 +9,10 @@
 /* Responsive Styles
 -------------------------------------------*/
 @media screen and (max-width: 919px) {
+  .profile__info {
+    margin-right: 17px;
+  }
+
   .profile__add-button {
     width: 150px;
     margin-left: 50px;
@@ -24,7 +28,6 @@
 
   .footer__copyright {
     font-size: 14px;
-    line-height: 16.94px;
     padding-left: 91px;
   }
 }
@@ -47,8 +50,15 @@
   .profile__info {
     justify-content: center;
     max-width: 282px;
-    grid-template-columns: minmax(auto, 196px) auto;
+    grid-template-columns: minmax(auto, 196px) 18px;
     grid-gap: 14px 17px;
+    margin-right: 0;
+  }
+
+  .profile__edit-button {
+    width: 18px;
+    height: 18px;
+    margin-right: 0;
   }
 
   .profile__image {
@@ -59,14 +69,12 @@
 
   .profile__title {
     font-size: 22px;
-    line-height: 26.63px;
     text-align: center;
   }
 
   .profile__description {
     font-weight: 400;
     font-size: 14px;
-    line-height: 16.94px;
     text-align: center;
   }
 
@@ -79,7 +87,6 @@
 
   .footer__copyright {
     font-size: 14px;
-    line-height: 16.94px;
     padding-left: 20px;
   }
 }

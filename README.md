@@ -19,7 +19,7 @@ This project involves creating an interactive webpage where users can add and re
 
 ## Repository
 
-![repo](https://github.com/c0demat1cs/se_project_aroundtheus.git)
+![repo](https://c0demat1cs.github.io/se_project_aroundtheus)
 
 ## Plan on improving the project
 

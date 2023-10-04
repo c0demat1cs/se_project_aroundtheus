@@ -73,8 +73,10 @@ const getCardElement = (cardData) => {
   cardImageEl.alt = cardData.name;
   cardTitleEl.textContent = cardData.name;
 
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.add("active");
+  likeButtons.forEach((likeButton) => {
+    likeButton.addEventListener("click", () => {
+      likeButton.classList.toggle("card__like-button_active");
+    });
   });
 
   deleteButton.addEventListener("click", () => {
@@ -115,10 +117,4 @@ profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 initialCards.forEach((cardData) => {
   const cardElement = getCardElement(cardData);
   cardListEl.prepend(cardElement);
-});
-
-likeButtons.forEach((likeButton) => {
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle(".card__like-button_active");
-  });
 });

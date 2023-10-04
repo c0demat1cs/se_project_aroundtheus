@@ -42,6 +42,7 @@ const profileEditButton = document.querySelector("#profile-edit-button");
 const cardCloseButton = document.querySelector(".card__close-button");
 const modalCloseButton = document.querySelector("#modal-close-button");
 const likeButtons = document.querySelectorAll(".card__like-button");
+
 // FORM DATA
 const cardTitle = document.querySelector(".card__title");
 const cardTitleInput = document.querySelector("#card-title-input");
@@ -73,10 +74,8 @@ const getCardElement = (cardData) => {
   cardImageEl.alt = cardData.name;
   cardTitleEl.textContent = cardData.name;
 
-  likeButtons.forEach((likeButton) => {
-    likeButton.addEventListener("click", () => {
-      likeButton.classList.toggle("card__like-button_active");
-    });
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("card__like-button_active");
   });
 
   deleteButton.addEventListener("click", () => {

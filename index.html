@@ -37,7 +37,7 @@
         <p class="footer__copyright">&copy; 2022 Around The U.S.</p>
       </footer>
     </div>
-
+    <!-- PROFILE EDIT MODAL  -->
     <div class="modal" id="profile-edit-modal">
       <div class="modal__container">
         <button
@@ -72,16 +72,16 @@
           id="add-close-button"
         ></button>
         <p class="modal__heading">New Place</p>
-        <form class="modal__form" name="profile-form">
+        <form class="modal__form" id="add-card-form" name="profile-form">
           <input
-            class="modal__input"
+            class="modal__input modal__input_type_title"
             type="text"
             id="card-title-input"
             name="title"
             placeholder="Title"
           />
           <input
-            class="modal__input card__link"
+            class="modal__input modal__input_type_link"
             type="text"
             id="card-link-input"
             name="link"

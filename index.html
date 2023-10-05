@@ -27,7 +27,11 @@
             ></button>
             <p class="profile__description">Explorer</p>
           </div>
-          <button class="profile__add-button" type="button"></button>
+          <button
+            class="profile__add-button"
+            id="profile-add-button"
+            type="button"
+          ></button>
         </section>
         <section class="cards page__section">
           <ul class="cards__list"></ul>
@@ -40,10 +44,7 @@
     <!-- PROFILE EDIT MODAL  -->
     <div class="modal" id="profile-edit-modal">
       <div class="modal__container">
-        <button
-          class="modal__close card__close-button"
-          id="modal-close-button"
-        ></button>
+        <button class="modal__close" id="modal-close-button"></button>
         <p class="modal__heading">Edit Profile</p>
         <form class="modal__form" name="profile-form">
           <input
@@ -67,10 +68,7 @@
     <!-- CREATE NEW CARD MODAL  -->
     <div class="modal" id="add-card-modal">
       <div class="modal__container">
-        <button
-          class="modal__close add__close-button"
-          id="add-close-button"
-        ></button>
+        <button class="modal__close" id="add-close-button"></button>
         <p class="modal__heading">New Place</p>
         <form class="modal__form" id="add-card-form" name="profile-form">
           <input
@@ -95,10 +93,7 @@
     <!-- IMAGE MODAL  -->
     <div class="modal" id="image-modal">
       <figure class="modal__image-container">
-        <button
-          class="modal__close image__close-button"
-          id="image-close-button"
-        ></button>
+        <button class="modal__close" id="image-close-button"></button>
         <img
           class="modal__image"
           src="/images/bald-mountains.jpg"

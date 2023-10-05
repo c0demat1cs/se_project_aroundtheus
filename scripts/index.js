@@ -41,9 +41,9 @@ const imageModal = document.querySelector("#image-modal");
 const imageCaption = document.querySelector(".modal__popup-caption");
 
 // BUTTONS AND OTHER DOM ELEMENTS
-const profileAddButton = document.querySelector(".profile__add-button");
+const profileAddButton = document.querySelector("#profile-add-button");
 const profileEditButton = document.querySelector("#profile-edit-button");
-const cardCloseButton = document.querySelector(".add__close-button");
+const cardCloseButton = document.querySelector("#add-close-button");
 const modalCloseButton = document.querySelector("#modal-close-button");
 const imageCloseButton = document.querySelector("#image-close-button");
 const likeButtons = document.querySelectorAll(".card__like-button");

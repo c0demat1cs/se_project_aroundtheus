@@ -19,6 +19,8 @@ This project involves creating an interactive webpage where users can add and re
   ![text overlow](../images/textoverflow.png)
 - Modal form opens upon clicking the edit button
 - User is able to update their Name and Description fields
+- User is able to add and remove cards
+- User is able to click on images for a popup view
 
 ## Repository
 
@@ -26,8 +28,5 @@ This project involves creating an interactive webpage where users can add and re
 
 ## Plan on improving the project
 
-- Add funtionality to the profile edit button, add button, and like buttons.
-- Make images clickable that takes the viewer to a new page featuring the that image.
 - Add comment section to images.
-- Add animation to like buttons.
 - Make all aspects of the profile editable.

@@ -32,6 +32,26 @@
   box-sizing: border-box;
 }
 
+.modal__image-container {
+  display: block;
+  position: relative;
+  margin: auto;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.modal__image {
+  max-width: 75vw;
+  max-height: 75vh;
+  object-fit: fill;
+}
+
+.modal__popup-caption {
+  font-size: 12px;
+  line-height: 14.5px;
+  font-weight: 400;
+}
+
 .modal__close {
   background-image: url(../images/close-icon.svg);
   border: none;

@@ -37,12 +37,15 @@ const profileEditModal = document.querySelector("#profile-edit-modal");
 const addCardModal = document.querySelector("#add-card-modal");
 const profileFormElement = profileEditModal.querySelector(".modal__form");
 const addCardFormElement = addCardModal.querySelector(".modal__form");
+const imageModal = document.querySelector("#image-modal");
+const imageCaption = document.querySelector(".modal__popup-caption");
 
 // BUTTONS AND OTHER DOM ELEMENTS
 const profileAddButton = document.querySelector(".profile__add-button");
 const profileEditButton = document.querySelector("#profile-edit-button");
 const cardCloseButton = document.querySelector(".add__close-button");
 const modalCloseButton = document.querySelector("#modal-close-button");
+const imageCloseButton = document.querySelector("#image-close-button");
 const likeButtons = document.querySelectorAll(".card__like-button");
 
 // FORM DATA
@@ -70,10 +73,13 @@ function closeCardPopup() {
   addCardModal.classList.remove("modal_opened");
 }
 
+function closeImagePopup() {
+  imageModal.classList.remove("modal_opened");
+}
+
 function openPopup() {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
-
   profileEditModal.classList.remove("modal_opened");
 }
 
@@ -93,6 +99,14 @@ const getCardElement = (cardData) => {
 
   deleteButton.addEventListener("click", () => {
     cardElement.remove();
+  });
+
+  cardImageEl.addEventListener("click", () => {
+    const modalImage = imageModal.querySelector(".modal__image");
+    modalImage.src = cardData.link;
+    modalImage.alt = cardData.name;
+    imageCaption.textContent = cardData.name;
+    imageModal.classList.add("modal_opened");
   });
 
   return cardElement;
@@ -139,5 +153,6 @@ profileAddButton.addEventListener("click", () => {
 
 modalCloseButton.addEventListener("click", closePopup);
 cardCloseButton.addEventListener("click", closeCardPopup);
+imageCloseButton.addEventListener("click", closeImagePopup);
 
 initialCards.forEach((cardData) => renderCard(cardData, placesWrap));

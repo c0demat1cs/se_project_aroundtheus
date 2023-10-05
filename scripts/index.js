@@ -124,6 +124,7 @@ function handleNewCardSubmit(e) {
   const link = cardLinkInput.value;
   renderCard({ name, link }, placesWrap);
   closeCardPopup(addCardModal);
+  evt.target.reset();
 }
 
 // EVENT LISTENERS
@@ -138,8 +139,8 @@ profileEditButton.addEventListener("click", () => {
 });
 
 profileAddButton.addEventListener("click", () => {
-  cardTitleInput.value = cardTitle.textContent;
-  cardLinkInput.value = cardLink.textContent;
+  // cardTitleInput.value = cardTitle.textContent;
+  // cardLinkInput.value = cardLink.textContent;
   addCardModal.classList.add("modal_opened");
 });
 

@@ -65,10 +65,10 @@ const cardListEl = document.querySelector(".cards__list");
 // FUNCTIONS
 
 // universal close button function
-closeButtons.forEach((button) => {
-  const popup = button.closest(".modal");
-  button.addEventListener("click", () => closePopup(popup));
-});
+// closeButtons.forEach((button) => {
+//   const popup = button.closest(".modal");
+//   button.addEventListener("click", () => closePopup(popup));
+// });
 
 function closePopup(modal) {
   modal.classList.remove("modal_opened");
@@ -80,9 +80,9 @@ function closePopup(modal) {
 //   button.addEventListener("click", () => openPopup(popup));
 // });
 
-// function openPopup(modal) {
-//   modal.classList.add("modal_opened");
-// }
+function openPopup(modal) {
+  modal.classList.add("modal_opened");
+}
 
 // function expression to clone card: select elements, set attributes, add an event listener to like button
 const getCardElement = (cardData) => {
@@ -126,7 +126,7 @@ function handleProfileEditSubmit(e) {
   e.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
-  closePopup(); // ERROR HERE
+  closePopup(profileEditModal); // ERROR HERE
 }
 
 function handleNewCardSubmit(e) {
@@ -148,11 +148,11 @@ cardForm.addEventListener("submit", handleNewCardSubmit);
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
-  profileEditModal.classList.add("modal_opened");
+  openPopup(profileEditModal);
 });
 // Listens for add button click, functions to open new card from modal.
 profileAddButton.addEventListener("click", () => {
-  addCardModal.classList.add("modal_opened");
+  openPopup(addCardModal);
 });
 
 // Places new card at the beginning of the list ???

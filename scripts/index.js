@@ -35,7 +35,7 @@ const cardTemplate = document
 const placesWrap = document.querySelector(".cards__list");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const addCardModal = document.querySelector("#add-card-modal");
-const profileForm = profileEditModal.querySelector("profile-form");
+// const profileForm = profileEditModal.querySelector("#profile-form");  This doesn't seem to do anything / already defined / Remove later
 const cardForm = addCardModal.querySelector("#add-card-form");
 const imageModal = document.querySelector("#image-modal");
 const modalImage = imageModal.querySelector(".modal__image");
@@ -72,18 +72,19 @@ closeButtons.forEach((button) => {
 
 function closePopup(modal) {
   modal.classList.remove("modal_opened");
-
-  // universal open button function
-  openButtons.forEach((button) => {
-    const popup = button.clsoest(".modal");
-    button.addEventListener("click", () => openPopup(popup));
-  });
-
-  function openPopup(modal) {
-    modal.classList.add("modal_opened");
-  }
 }
 
+// universal open button function / DOESN'T WORK / breaks closeButtons function
+// openButtons.forEach((button) => {
+//   const popup = button.closest(".modal");
+//   button.addEventListener("click", () => openPopup(popup));
+// });
+
+// function openPopup(modal) {
+//   modal.classList.add("modal_opened");
+// }
+
+// function expression to clone card: select elements, set attributes, add an event listener to like button
 const getCardElement = (cardData) => {
   const cardElement = cardTemplate.cloneNode(true);
   const likeButton = cardElement.querySelector(".card__like-button");
@@ -112,6 +113,7 @@ const getCardElement = (cardData) => {
   return cardElement;
 };
 
+// Places new card at the beginning of the list ???
 function renderCard(cardData, wrapper) {
   const cardElement = getCardElement(cardData);
   wrapper.prepend(cardElement);
@@ -119,11 +121,12 @@ function renderCard(cardData, wrapper) {
 
 // EVENT HANDLERS
 
+// Handles edit form submit / ERRORS ON SUBMIT == POPUP DOESN'T CLOSE
 function handleProfileEditSubmit(e) {
   e.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
-  closePopup();
+  closePopup(); // ERROR HERE
 }
 
 function handleNewCardSubmit(e) {
@@ -137,17 +140,20 @@ function handleNewCardSubmit(e) {
 
 // EVENT LISTENERS
 
+// Listens for submit on profile edit form
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
+// Listens for submit on add new card form
 cardForm.addEventListener("submit", handleNewCardSubmit);
-
+// listens for edit button click, functions to open the form modal.
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
   profileEditModal.classList.add("modal_opened");
 });
-
+// Listens for add button click, functions to open new card from modal.
 profileAddButton.addEventListener("click", () => {
   addCardModal.classList.add("modal_opened");
 });
 
+// Places new card at the beginning of the list ???
 initialCards.forEach((cardData) => renderCard(cardData, placesWrap));

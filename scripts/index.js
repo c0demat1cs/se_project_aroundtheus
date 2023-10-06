@@ -46,7 +46,7 @@ const profileAddButton = document.querySelector("#profile-add-button");
 const profileEditButton = document.querySelector("#profile-edit-button");
 
 const closeButtons = document.querySelectorAll(".modal__close");
-const openButtons = document.querySelectorAll(".modal");
+// const openButtons = document.querySelectorAll(".modal");   // Does nothing  -  Remove later
 
 // FORM DATA
 const cardTitle = document.querySelector(".modal__input_type_title");
@@ -65,11 +65,12 @@ const cardListEl = document.querySelector(".cards__list");
 // FUNCTIONS
 
 // universal close button function
-// closeButtons.forEach((button) => {
-//   const popup = button.closest(".modal");
-//   button.addEventListener("click", () => closePopup(popup));
-// });
+closeButtons.forEach((button) => {
+  const popup = button.closest(".modal");
+  button.addEventListener("click", () => closePopup(popup));
+});
 
+// universal open button function
 function closePopup(modal) {
   modal.classList.remove("modal_opened");
 }

@@ -35,7 +35,6 @@ const cardTemplate = document
 const placesWrap = document.querySelector(".cards__list");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const addCardModal = document.querySelector("#add-card-modal");
-// const profileForm = profileEditModal.querySelector("#profile-form");  This doesn't seem to do anything / already defined / Remove later
 const cardForm = addCardModal.querySelector("#add-card-form");
 const imageModal = document.querySelector("#image-modal");
 const modalImage = imageModal.querySelector(".modal__image");
@@ -46,7 +45,6 @@ const profileAddButton = document.querySelector("#profile-add-button");
 const profileEditButton = document.querySelector("#profile-edit-button");
 
 const closeButtons = document.querySelectorAll(".modal__close");
-// const openButtons = document.querySelectorAll(".modal");   // Does nothing  -  Remove later
 
 // FORM DATA
 const cardTitle = document.querySelector(".modal__input_type_title");
@@ -74,12 +72,6 @@ closeButtons.forEach((button) => {
 function closePopup(modal) {
   modal.classList.remove("modal_opened");
 }
-
-// universal open button function / DOESN'T WORK / breaks closeButtons function
-// openButtons.forEach((button) => {
-//   const popup = button.closest(".modal");
-//   button.addEventListener("click", () => openPopup(popup));
-// });
 
 function openPopup(modal) {
   modal.classList.add("modal_opened");

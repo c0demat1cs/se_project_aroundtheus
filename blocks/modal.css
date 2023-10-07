@@ -112,4 +112,14 @@
     bottom: calc(100% + 13px);
     left: calc(100% - 30px);
   }
+
+  .modal__heading {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .modal__button {
+    font-size: 14px;
+    line-height: 17px;
+  }
 }

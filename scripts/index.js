@@ -105,10 +105,11 @@ const getCardElement = (cardData) => {
   });
 
   cardImageEl.addEventListener("click", () => {
+    const modalImage = imageModal.querySelector(".modal__image");
     modalImage.src = cardData.link;
     modalImage.alt = cardData.name;
     imageCaption.textContent = cardData.name;
-    imageModal.classList.add("modal_opened");
+    openPopup(imageModal);
   });
 
   return cardElement;

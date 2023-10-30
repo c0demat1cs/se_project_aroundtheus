@@ -92,8 +92,18 @@
   color: #ffffff;
 }
 
+.modal__button_disabled {
+  border: 1px;
+  opacity: 0.2;
+}
+
+.modal__error {
+  margin-top: 5px;
+  margin-bottom: 13px;
+}
+
 .modal__input {
-  margin-bottom: 29px;
+  /* margin-bottom: 29px; */
   border: none;
   border-bottom: 1px solid #000000;
   color: #000000;
@@ -101,6 +111,13 @@
   font-size: 14px;
   line-height: 17px;
   padding-bottom: 13px;
+}
+
+.modal__error {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14.52px;
+  color: red;
 }
 
 /* Media Queries */

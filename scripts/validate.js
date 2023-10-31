@@ -74,12 +74,6 @@ function setEventListeners(formElement, options) {
   const inputElements = [...formElement.querySelectorAll(inputSelector)];
   const submitButton = formElement.querySelector(".modal__button");
 
-  formElement.addEventListener("submit", (evt) => {
-    if (!hasInvalidInput(inputElements)) {
-      formElement.reset(); // Reset the form
-    }
-  });
-
   inputElements.forEach((inputElement) => {
     inputElement.addEventListener("input", (evt) => {
       checkInputValidity(formElement, inputElement, options);

@@ -120,7 +120,8 @@ function handleProfileEditSubmit(e) {
   e.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
-  closePopup(profileEditModal); // ERROR HERE
+  e.target.reset();
+  closePopup(profileEditModal);
 }
 
 function handleNewCardSubmit(e) {
@@ -147,6 +148,28 @@ profileEditButton.addEventListener("click", () => {
 // Listens for add button click, functions to open new card from modal.
 profileAddButton.addEventListener("click", () => {
   openPopup(addCardModal);
+});
+
+// event listener for closing modal with Escape key
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    const openModals = document.querySelectorAll(".modal.modal_opened");
+    if (openModals.length > 0) {
+      // Close the topmost opened modal
+      closePopup(openModals[openModals.length - 1]);
+    }
+  }
+});
+
+// event listener to close modals by clicking on the overlay
+const modalOverlays = document.querySelectorAll(".modal");
+modalOverlays.forEach((modalOverlay) => {
+  modalOverlay.addEventListener("click", (event) => {
+    if (event.target === modalOverlay) {
+      const popup = modalOverlay.closest(".modal");
+      closePopup(popup);
+    }
+  });
 });
 
 // Places new card at the beginning of the list ???

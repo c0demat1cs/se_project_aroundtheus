@@ -97,13 +97,12 @@
   opacity: 0.2;
 }
 
-.modal__error {
-  margin-top: 5px;
-  margin-bottom: 13px;
+.modal__input_visible {
+  border-bottom: 1px solid red;
 }
 
 .modal__input {
-  /* margin-bottom: 29px; */
+  margin-bottom: 29px;
   border: none;
   border-bottom: 1px solid #000000;
   color: #000000;
@@ -117,7 +116,13 @@
   font-weight: 400;
   font-size: 12px;
   line-height: 14.52px;
+  margin-top: 3px;
+  margin-bottom: 13px;
   color: red;
+}
+
+.modal__input:invalid {
+  border-bottom: 1px solid red;
 }
 
 /* Media Queries */

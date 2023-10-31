@@ -13,6 +13,7 @@ function showInputError(
   errorMessageElement.textContent = inputElement.validationMessage;
   errorMessageElement.classList.add(errorClass);
 }
+
 function hideInputError(
   formElement,
   inputElement,
@@ -72,6 +73,13 @@ function setEventListeners(formElement, options) {
   const { inputSelector } = options;
   const inputElements = [...formElement.querySelectorAll(inputSelector)];
   const submitButton = formElement.querySelector(".modal__button");
+
+  formElement.addEventListener("submit", (evt) => {
+    if (!hasInvalidInput(inputElements)) {
+      formElement.reset(); // Reset the form
+    }
+  });
+
   inputElements.forEach((inputElement) => {
     inputElement.addEventListener("input", (evt) => {
       checkInputValidity(formElement, inputElement, options);
@@ -84,7 +92,6 @@ function setEventListeners(formElement, options) {
 function enableValidation(options) {
   // selects all forms from html and makes them into an array via the spread operator ...
   const formElements = [...document.querySelectorAll(options.formSelector)];
-
   // loop through each of the form elements via .forEach method
   formElements.forEach((formElement) => {
     // adds event listener - when form gets submitted, things happen as defined in the body
@@ -94,18 +101,6 @@ function enableValidation(options) {
     });
 
     setEventListeners(formElement, options);
-    // look for all inputs inside of form
-    // loop through all the inputs to see if all are valid
-
-    // if input is not valid
-    // get validation message
-    // add error class to input
-    // display error message
-    // disable button
-
-    // if all inputs valid
-    // enable button
-    // reset error messages
   });
 }
 
@@ -121,3 +116,16 @@ const config = {
 
 // calls the evanbleValidation function with config object as parameter
 enableValidation(config);
+
+// look for all inputs inside of form
+// loop through all the inputs to see if all are valid
+
+// if input is not valid
+// get validation message
+// add error class to input
+// display error message
+// disable button
+
+// if all inputs valid
+// enable button
+// reset error messages

@@ -76,7 +76,7 @@ function closePopup(modal) {
 
 function openPopup(modal) {
   modal.classList.add("modal_opened");
-  document.addEventListener("keydown", (evt) => keyHandler(evt, modal));
+  document.addEventListener("keydown", keyHandler);
 }
 
 function keyHandler(evt) {

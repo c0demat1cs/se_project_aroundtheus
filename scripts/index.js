@@ -63,10 +63,10 @@ const cardListEl = document.querySelector(".cards__list");
 // FUNCTIONS
 
 // universal close button function
-closeButtons.forEach((button) => {
-  const popup = button.closest(".modal");
-  button.addEventListener("click", () => closePopup(popup));
-});
+// closeButtons.forEach((button) => {
+//   const popup = button.closest(".modal");
+//   button.addEventListener("click", () => closePopup(popup));
+// });
 
 // universal open button function
 function closePopup(modal) {
@@ -157,7 +157,6 @@ profileAddButton.addEventListener("click", () => {
 });
 
 // event listener to close modals by clicking on the overlay
-// NEED TO GO INTO MARKUP & CSS AND CHANGE CLASSES TO MORE GENERIC 'POPUP', but for now...
 const popups = document.querySelectorAll(".modal");
 
 popups.forEach((popup) => {

@@ -79,8 +79,9 @@ function openPopup(modal) {
   document.addEventListener("keydown", (evt) => keyHandler(evt, modal));
 }
 
-function keyHandler(evt, modal) {
+function keyHandler(evt) {
   if (evt.key === "Escape") {
+    const modal = document.querySelector(".modal_opened");
     closePopup(modal);
   }
 }

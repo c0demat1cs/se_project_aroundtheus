@@ -41,6 +41,7 @@ function hasInvalidInput(inputList) {
 
 // Disables the button by adding specified class and disabling it
 function disableButton(submitButton, inactiveButtonClass) {
+  console.log(submitButton);
   if (submitButton) {
     submitButton.classList.add(inactiveButtonClass);
     submitButton.disabled = true;
@@ -70,7 +71,7 @@ function toggleButtonState(
 
 function setEventListeners(formElement, options) {
   // create a variable inputSelector and set it to the property of inputSelector object
-  const { inputSelector } = options;
+  const { inputSelector, submitButtonSelector } = options;
   const inputElements = [...formElement.querySelectorAll(inputSelector)];
   const submitButton = formElement.querySelector(submitButtonSelector);
 

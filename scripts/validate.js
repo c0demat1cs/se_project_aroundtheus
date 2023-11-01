@@ -72,7 +72,7 @@ function setEventListeners(formElement, options) {
   // create a variable inputSelector and set it to the property of inputSelector object
   const { inputSelector } = options;
   const inputElements = [...formElement.querySelectorAll(inputSelector)];
-  const submitButton = formElement.querySelector(".modal__button");
+  const submitButton = formElement.querySelector(submitButtonSelector);
 
   inputElements.forEach((inputElement) => {
     inputElement.addEventListener("input", (evt) => {
@@ -110,16 +110,3 @@ const config = {
 
 // calls the evanbleValidation function with config object as parameter
 enableValidation(config);
-
-// look for all inputs inside of form
-// loop through all the inputs to see if all are valid
-
-// if input is not valid
-// get validation message
-// add error class to input
-// display error message
-// disable button
-
-// if all inputs valid
-// enable button
-// reset error messages

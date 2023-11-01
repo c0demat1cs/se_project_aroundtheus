@@ -97,6 +97,11 @@
   opacity: 0.2;
 }
 
+.modal__input:invalid {
+  border-bottom: 1px solid red;
+  margin-bottom: 0px;
+}
+
 .modal__input {
   margin-bottom: 29px;
   border: none;
@@ -115,11 +120,6 @@
   margin-top: 3px;
   margin-bottom: 13px;
   color: red;
-}
-
-.modal__input:invalid {
-  border-bottom: 1px solid red;
-  /* margin-bottom: 0px; */
 }
 
 /* Media Queries */

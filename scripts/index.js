@@ -35,7 +35,6 @@ const cardTemplate = document
 const placesWrap = document.querySelector(".cards__list");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const addCardModal = document.querySelector("#add-card-modal");
-const cardForm = addCardModal.querySelector("#add-card-form");
 const imageModal = document.querySelector("#image-modal");
 const modalImage = imageModal.querySelector(".modal__image");
 const imageCaption = document.querySelector(".modal__popup-caption");
@@ -57,7 +56,8 @@ const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
-const profileEditForm = profileEditModal.querySelector(".modal__form");
+const profileForm = document.forms["profile-form"];
+const cardForm = document.forms["card-form"];
 const cardListEl = document.querySelector(".cards__list");
 
 // FUNCTIONS
@@ -71,10 +71,18 @@ closeButtons.forEach((button) => {
 // universal open button function
 function closePopup(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", keyHandler);
 }
 
 function openPopup(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keydown", (evt) => keyHandler(evt, modal));
+}
+
+function keyHandler(evt, modal) {
+  if (evt.key === "Escape") {
+    closePopup(modal);
+  }
 }
 
 // function expression to clone card: select elements, set attributes, add an event listener to like button
@@ -97,7 +105,6 @@ const getCardElement = (cardData) => {
   });
 
   cardImageEl.addEventListener("click", () => {
-    const modalImage = imageModal.querySelector(".modal__image");
     modalImage.src = cardData.link;
     modalImage.alt = cardData.name;
     imageCaption.textContent = cardData.name;
@@ -120,7 +127,6 @@ function handleProfileEditSubmit(e) {
   e.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
-  e.target.reset();
   closePopup(profileEditModal);
 }
 
@@ -136,7 +142,7 @@ function handleNewCardSubmit(e) {
 // EVENT LISTENERS
 
 // Listens for submit on profile edit form
-profileEditForm.addEventListener("submit", handleProfileEditSubmit);
+profileForm.addEventListener("submit", handleProfileEditSubmit);
 // Listens for submit on add new card form
 cardForm.addEventListener("submit", handleNewCardSubmit);
 // listens for edit button click, functions to open the form modal.
@@ -150,23 +156,16 @@ profileAddButton.addEventListener("click", () => {
   openPopup(addCardModal);
 });
 
-// event listener for closing modal with Escape key
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") {
-    const openModals = document.querySelectorAll(".modal.modal_opened");
-    if (openModals.length > 0) {
-      // Close the topmost opened modal
-      closePopup(openModals[openModals.length - 1]);
-    }
-  }
-});
-
 // event listener to close modals by clicking on the overlay
-const modalOverlays = document.querySelectorAll(".modal");
-modalOverlays.forEach((modalOverlay) => {
-  modalOverlay.addEventListener("click", (event) => {
-    if (event.target === modalOverlay) {
-      const popup = modalOverlay.closest(".modal");
+// NEED TO GO INTO MARKUP & CSS AND CHANGE CLASSES TO MORE GENERIC 'POPUP', but for now...
+const popups = document.querySelectorAll(".modal");
+
+popups.forEach((popup) => {
+  popup.addEventListener("mousedown", (evt) => {
+    if (evt.target.classList.contains("modal_opened")) {
+      closePopup(popup);
+    }
+    if (evt.target.classList.contains("modal__close")) {
       closePopup(popup);
     }
   });

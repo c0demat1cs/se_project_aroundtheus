@@ -1,9 +1,26 @@
 export default class Card {
   constructor({ name, link }, cardSelector) {
-    this.name = name;
-    this.link = link;
-    this.cardSelector = cardSelector;
+    this._name = name;
+    this._link = link;
+    this._cardSelector = cardSelector;
   }
+
+  // getView defines the card element
+  getView() {
+    this._cardElement = document
+      .querySelector(this._cardSelector)
+      .content.querySelector(".card")
+      .cloneNode(true);
+
+    // get card view
+    // NOTE SURE WHAT TO DO HERE
+
+    // set event listeners
+    this._setEventListeners();
+    // return the card
+    return this._cardElement;
+  }
+
   // LISTENERS
   // fetch each element , add listener
   _setEventListeners() {
@@ -31,21 +48,5 @@ export default class Card {
   _handleDeleteCard() {
     this._cardElement.remove();
     this._cardElement = null;
-  }
-
-  // getView defines the card element
-  getView() {
-    this._cardElement = document
-      .querySelector(this._cardSelector)
-      .content.querySelector(".card")
-      .cloneNone(true);
-
-    // get card view
-    // NOTE SURE WHAT TO DO HERE
-
-    // set event listeners
-    this._setEventListeners();
-    // return the card
-    return this._cardElement;
   }
 }

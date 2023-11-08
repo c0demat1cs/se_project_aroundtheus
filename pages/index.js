@@ -1,4 +1,4 @@
-import Card from "./components.Card.js";
+import Card from "../components/Card.js";
 
 const initialCards = [
   {
@@ -28,12 +28,18 @@ const initialCards = [
 ];
 
 // take one instance from the array above = need to looop through it to create an instance of each later.
-const cardInstance = {
-  name: "Yosemite Valley",
-  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-};
+// const cardInstance = {
+//   name: "Yosemite Valley",
+//   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+// };
 
-const card = new Card(cardInstance);
+// loop through the initialCards array and return an array of Card instances from initialCards data
+const cardInstances = initialCards.map((cardData) => {
+  return new Card(cardData.name, cardData.link);
+});
+
+const card = new Card(cardInstances, "#card-template");
+card.getView();
 
 // ELEMENTS
 

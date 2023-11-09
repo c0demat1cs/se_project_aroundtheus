@@ -29,15 +29,15 @@ const initialCards = [
 ];
 
 // loop through the initialCards array and return an array of Card instances from initialCards data
-const cardInstances = initialCards.map((cardData) => {
-  return new Card(cardData);
-});
+// const cardInstances = initialCards.map((cardData) => {
+//   return new Card(cardData);
+// });
 
-const card = new Card(cardInstances, "#card-template");
+const card = new Card("#card-template");
 card.getView();
 
 /////////////////////////////////////////////////////////////////////
-// Create an instance of the FormValidator class for your profile form
+// creates an instance of the FormValidator class for the profile form
 const settings = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
@@ -49,10 +49,15 @@ const settings = {
 
 const editFormValidator = new FormValidator(
   settings,
-  document.querySelector(".modal__form")
+  document.querySelector("#profile-form")
 );
 
 editFormValidator.enableValidation();
+
+const cardFormValidator = new FormValidator(
+  settings,
+  document.querySelector("#add-card-form")
+);
 
 /////////////////////////////////////////////////////////////////////
 
@@ -112,43 +117,43 @@ function keyHandler(evt) {
 }
 
 // function expression to clone card: select elements, set attributes, add an event listener to like button
-const getCardElement = (cardData) => {
-  const cardElement = cardTemplate.cloneNode(true);
-  // const likeButton = cardElement.querySelector(".card__like-button");
-  // const deleteButton = cardElement.querySelector(".card__delete-button");
-  const cardImageEl = cardElement.querySelector(".card__image");
-  const cardTitleEl = cardElement.querySelector(".card__title");
-  cardImageEl.src = cardData.link;
-  cardImageEl.alt = cardData.name;
-  cardTitleEl.textContent = cardData.name;
+// const getCardElement = (cardData) => {
+//   const cardElement = cardTemplate.cloneNode(true);
+// const likeButton = cardElement.querySelector(".card__like-button");
+// const deleteButton = cardElement.querySelector(".card__delete-button");
+// const cardImageEl = cardElement.querySelector(".card__image");
+// const cardTitleEl = cardElement.querySelector(".card__title");
+// cardImageEl.src = cardData.link;
+// cardImageEl.alt = cardData.name;
+// cardTitleEl.textContent = cardData.name;
 
-  // likeButton.addEventListener("click", () => {
-  //   likeButton.classList.toggle("card__like-button_active");
-  // });
+// likeButton.addEventListener("click", () => {
+//   likeButton.classList.toggle("card__like-button_active");
+// });
 
-  // deleteButton.addEventListener("click", () => {
-  //   cardElement.remove();
-  // });
+// deleteButton.addEventListener("click", () => {
+//   cardElement.remove();
+// });
 
-  cardImageEl.addEventListener("click", () => {
-    modalImage.src = cardData.link;
-    modalImage.alt = cardData.name;
-    imageCaption.textContent = cardData.name;
-    openPopup(imageModal);
-  });
+// cardImageEl.addEventListener("click", () => {
+//   modalImage.src = cardData.link;
+//   modalImage.alt = cardData.name;
+//   imageCaption.textContent = cardData.name;
+//   openPopup(imageModal);
+// });
 
-  return cardElement;
-};
+//   return cardElement;
+// };
 
-// Places new card at the beginning of the list ???
+// Places new card at the beginning of the list
 function renderCard(cardData, wrapper) {
-  const cardElement = getCardElement(cardData);
-  wrapper.prepend(cardElement);
+  const card = getCardElement(cardData, "#card-template");
+  wrapper.prepend(card.getView());
 }
 
 // EVENT HANDLERS
 
-// Handles edit form submit / ERRORS ON SUBMIT == POPUP DOESN'T CLOSE
+// Handles edit form submit
 function handleProfileEditSubmit(e) {
   e.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
@@ -196,5 +201,5 @@ popups.forEach((popup) => {
   });
 });
 
-// Places new card at the beginning of the list ???
-initialCards.forEach((cardData) => renderCard(cardData, placesWrap));
+// Places new card at the beginning of the list
+// initialCards.forEach((cardData) => renderCard(cardData, placesWrap));

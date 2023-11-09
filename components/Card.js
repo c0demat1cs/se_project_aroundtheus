@@ -12,6 +12,18 @@ export default class Card {
       .content.querySelector(".card")
       .cloneNode(true);
 
+    const cardImageEl = this._cardElement.querySelector(".card__image");
+    const cardTitleEl = this._cardElement.querySelector(".card__title");
+    cardImageEl.src = this._link;
+    cardImageEl.alt = this._name;
+    cardTitleEl.textContent = this._name;
+
+    cardImageEl.addEventListener("click", () => {
+      modalImage.src = this._link;
+      modalImage.alt = this._name;
+      imageCaption.textContent = this._name;
+      openPopup(imageModal);
+    });
     // set event listeners
     this._setEventListeners();
     // return the card

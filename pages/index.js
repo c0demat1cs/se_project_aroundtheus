@@ -1,4 +1,5 @@
 import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
 
 const initialCards = [
   {
@@ -27,19 +28,33 @@ const initialCards = [
   },
 ];
 
-// take one instance from the array above = need to looop through it to create an instance of each later.
-// const cardInstance = {
-//   name: "Yosemite Valley",
-//   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-// };
-
 // loop through the initialCards array and return an array of Card instances from initialCards data
 const cardInstances = initialCards.map((cardData) => {
-  return new Card(cardData.name, cardData.link);
+  return new Card(cardData);
 });
 
 const card = new Card(cardInstances, "#card-template");
 card.getView();
+
+/////////////////////////////////////////////////////////////////////
+// Create an instance of the FormValidator class for your profile form
+const settings = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
+
+const editFormValidator = new FormValidator(
+  settings,
+  document.querySelector(".modal__form")
+);
+
+editFormValidator.enableValidation();
+
+/////////////////////////////////////////////////////////////////////
 
 // ELEMENTS
 
@@ -77,12 +92,6 @@ const cardForm = document.forms["card-form"];
 const cardListEl = document.querySelector(".cards__list");
 
 // FUNCTIONS
-
-// universal close button function
-// closeButtons.forEach((button) => {
-//   const popup = button.closest(".modal");
-//   button.addEventListener("click", () => closePopup(popup));
-// });
 
 // universal open button function
 function closePopup(modal) {

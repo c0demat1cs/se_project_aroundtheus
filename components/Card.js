@@ -12,9 +12,6 @@ export default class Card {
       .content.querySelector(".card")
       .cloneNode(true);
 
-    // get card view
-    // NOTE SURE WHAT TO DO HERE
-
     // set event listeners
     this._setEventListeners();
     // return the card

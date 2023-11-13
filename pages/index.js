@@ -28,14 +28,6 @@ const initialCards = [
   },
 ];
 
-// loop through the initialCards array and return an array of Card instances from initialCards data
-// const cardInstances = initialCards.map((cardData) => {
-//   return new Card(cardData);
-// });
-
-const card = new Card("#card-template");
-card.getView();
-
 /////////////////////////////////////////////////////////////////////
 // creates an instance of the FormValidator class for the profile form
 const settings = {
@@ -59,13 +51,15 @@ const cardFormValidator = new FormValidator(
   document.querySelector("#add-card-form")
 );
 
+cardFormValidator.enableValidation();
+
 /////////////////////////////////////////////////////////////////////
 
 // ELEMENTS
 
-const cardTemplate = document
-  .querySelector("#card-template")
-  .content.querySelector(".places__item");
+// const cardTemplate = document
+//   .querySelector("#card-template")
+//   .content.querySelector(".places__item");
 
 // WRAPPERS
 const placesWrap = document.querySelector(".cards__list");
@@ -119,13 +113,13 @@ function keyHandler(evt) {
 // function expression to clone card: select elements, set attributes, add an event listener to like button
 // const getCardElement = (cardData) => {
 //   const cardElement = cardTemplate.cloneNode(true);
-// const likeButton = cardElement.querySelector(".card__like-button");
-// const deleteButton = cardElement.querySelector(".card__delete-button");
-// const cardImageEl = cardElement.querySelector(".card__image");
-// const cardTitleEl = cardElement.querySelector(".card__title");
-// cardImageEl.src = cardData.link;
-// cardImageEl.alt = cardData.name;
-// cardTitleEl.textContent = cardData.name;
+//   const likeButton = cardElement.querySelector(".card__like-button");
+//   const deleteButton = cardElement.querySelector(".card__delete-button");
+//   const cardImageEl = cardElement.querySelector(".card__image");
+//   const cardTitleEl = cardElement.querySelector(".card__title");
+//   cardImageEl.src = cardData.link;
+//   cardImageEl.alt = cardData.name;
+//   cardTitleEl.textContent = cardData.name;
 
 // likeButton.addEventListener("click", () => {
 //   likeButton.classList.toggle("card__like-button_active");
@@ -145,9 +139,17 @@ function keyHandler(evt) {
 //   return cardElement;
 // };
 
+// declare a function to handle image click
+function handleImageClick({ name, link }) {
+  modalImage.src = link;
+  modalImage.alt = name;
+  imageCaption.textContent = name;
+  openPopup(imageModal);
+}
+
 // Places new card at the beginning of the list
 function renderCard(cardData, wrapper) {
-  const card = getCardElement(cardData, "#card-template");
+  const card = new Card(cardData, "#card-template", handleImageClick);
   wrapper.prepend(card.getView());
 }
 
@@ -202,4 +204,4 @@ popups.forEach((popup) => {
 });
 
 // Places new card at the beginning of the list
-// initialCards.forEach((cardData) => renderCard(cardData, placesWrap));
+initialCards.forEach((cardData) => renderCard(cardData, placesWrap));

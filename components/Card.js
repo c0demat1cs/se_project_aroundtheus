@@ -6,6 +6,8 @@ export default class Card {
     this._handleImageClick = handleImageClick;
   }
 
+  //  METHODS
+  //abstraction to get the card element
   _getElement() {
     return document
       .querySelector(this._cardSelector)
@@ -31,7 +33,6 @@ export default class Card {
     return this._cardElement;
   }
 
-  // METHODS
   _handleLikeIcon = () => {
     this._likeButton.classList.toggle("card__like-button_active");
   };

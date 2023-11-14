@@ -6,12 +6,16 @@ export default class Card {
     this._handleImageClick = handleImageClick;
   }
 
-  // getView defines the card element
-  getView() {
-    this._cardElement = document
+  _getElement() {
+    return document
       .querySelector(this._cardSelector)
       .content.querySelector(".card")
       .cloneNode(true);
+  }
+
+  // getView defines the card element
+  getView() {
+    this._cardElement = this._getElement();
     this._likeButton = this._cardElement.querySelector(".card__like-button");
     this._deleteButton = this._cardElement.querySelector(
       ".card__delete-button"
@@ -23,17 +27,23 @@ export default class Card {
     this._cardTitleEl.textContent = this._name;
 
     // set event listeners
-    this._likeButton.addEventListener("click", () => {
-      this._cardElement.classList.toggle("card__like-button_active");
-    });
+    _handleLikeIcon = () => {
+      this._likeButton.classList.toggle("card__like-button_active");
+    };
 
-    this._deleteButton.addEventListener("click", () => {
+    _handleDeleteCard = () => {
       this._cardElement.remove();
-    });
+    };
+    // this._deleteButton.addEventListener("click", () => {
+    //   this._cardElement.remove();
+    // });
 
-    this._cardImageEl.addEventListener("click", () => {
+    _handleImageClick = () => {
       this._handleImageClick({ name: this._name, link: this._link });
-    });
+    };
+    // this._cardImageEl.addEventListener("click", () => {
+    //   this._handleImageClick({ name: this._name, link: this._link });
+    // });
 
     // return the card
     return this._cardElement;
@@ -56,8 +66,8 @@ export default class Card {
       });
 
     // Enabling this handler produces: Uncaught TypeError = handler is undefined.
-    this._handleImageElement.addEventListener("click", () => {
-      this._handleImageClick(this);
+    this._cardImageEl.addEventListener("click", () => {
+      this._handleImageClick({ name: this._name, link: this._link });
     });
   }
 

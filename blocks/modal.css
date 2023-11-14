@@ -63,6 +63,11 @@
   height: 40px;
   background-repeat: no-repeat;
   background-size: contain;
+  cursor: pointer;
+}
+
+.modal__close:hover {
+  opacity: 0.6;
 }
 
 .modal__heading {
@@ -90,10 +95,15 @@
   line-height: 18px;
   background-color: #000000;
   color: #ffffff;
+  cursor: pointer;
 }
 
 .modal__button_disabled {
   border: 1px;
+  opacity: 0.2;
+}
+
+.modal__button:hover {
   opacity: 0.2;
 }
 

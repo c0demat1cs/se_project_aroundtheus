@@ -95,6 +95,10 @@
   line-height: 18px;
   background-color: #000000;
   color: #ffffff;
+}
+
+.modal__button:hover {
+  opacity: 0.8;
   cursor: pointer;
 }
 
@@ -103,7 +107,7 @@
   opacity: 0.2;
 }
 
-.modal__button:hover {
+.modal__button_disabled:hover {
   opacity: 0.2;
 }
 

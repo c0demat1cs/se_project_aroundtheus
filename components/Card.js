@@ -48,7 +48,6 @@ export default class Card {
   // LISTENERS
   // fetch each element , add listener
   _setEventListeners() {
-    //".card__like-button"
     this._cardElement
       .querySelector(".card__like-button")
       .addEventListener("click", () => {

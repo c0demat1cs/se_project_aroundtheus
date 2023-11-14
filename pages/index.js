@@ -73,11 +73,11 @@ const imageCaption = document.querySelector(".modal__popup-caption");
 const profileAddButton = document.querySelector("#profile-add-button");
 const profileEditButton = document.querySelector("#profile-edit-button");
 
-const closeButtons = document.querySelectorAll(".modal__close");
+// const closeButtons = document.querySelectorAll(".modal__close");
 
 // FORM DATA
-const cardTitle = document.querySelector(".modal__input_type_title");
-const cardLink = document.querySelector(".modal__input_type_link");
+// const cardTitle = document.querySelector(".modal__input_type_title");
+// const cardLink = document.querySelector(".modal__input_type_link");
 const cardTitleInput = document.querySelector("#card-title-input");
 const cardLinkInput = document.querySelector("#card-link-input");
 const profileTitle = document.querySelector(".profile__title");
@@ -88,7 +88,7 @@ const profileDescriptionInput = document.querySelector(
 );
 const profileForm = document.forms["profile-form"];
 const cardForm = document.forms["card-form"];
-const cardListEl = document.querySelector(".cards__list");
+// const cardListEl = document.querySelector(".cards__list");
 
 // FUNCTIONS
 
@@ -168,7 +168,9 @@ function handleNewCardSubmit(e) {
   const name = cardTitleInput.value;
   const link = cardLinkInput.value;
   renderCard({ name, link }, placesWrap);
+  cardFormValidator.disableSubmitButton();
   e.target.reset();
+
   closePopup(addCardModal);
 }
 

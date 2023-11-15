@@ -44,12 +44,10 @@ export default class Card {
   // LISTENERS
   // fetch each element , add listener
   _setEventListeners() {
-    this._cardElement;
     this._likeButton.addEventListener("click", () => {
       this._handleLikeIcon();
     });
 
-    this._cardElement;
     this._deleteButton.addEventListener("click", () => {
       this._handleDeleteCard();
     });

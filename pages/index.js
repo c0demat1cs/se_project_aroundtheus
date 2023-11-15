@@ -145,7 +145,7 @@ cardForm.addEventListener("submit", handleNewCardSubmit);
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
-  editFormValidator.validateModalOpened();
+  editFormValidator.resetValidation();
   openPopup(profileEditModal);
 });
 // Listens for add button click, functions to open new card from modal.

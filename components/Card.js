@@ -37,10 +37,6 @@ export default class Card {
     this._likeButton.classList.toggle("card__like-button_active");
   };
 
-  _handleDeleteCard = () => {
-    this._cardElement.remove();
-  };
-
   _handleImageClick = () => {
     this._handleImageClick({ name: this._name, link: this._link });
   };
@@ -48,17 +44,15 @@ export default class Card {
   // LISTENERS
   // fetch each element , add listener
   _setEventListeners() {
-    this._cardElement
-      .querySelector(".card__like-button")
-      .addEventListener("click", () => {
-        this._handleLikeIcon();
-      });
+    this._cardElement;
+    this._likeButton.addEventListener("click", () => {
+      this._handleLikeIcon();
+    });
 
-    this._cardElement
-      .querySelector(".card__delete-button")
-      .addEventListener("click", () => {
-        this._handleDeleteCard();
-      });
+    this._cardElement;
+    this._deleteButton.addEventListener("click", () => {
+      this._handleDeleteCard();
+    });
 
     // Enabling this handler produces: Uncaught TypeError = handler is undefined.
     this._cardImageEl.addEventListener("click", () => {
@@ -67,11 +61,6 @@ export default class Card {
   }
 
   // HANDLERS
-  _handleLikeIcon() {
-    this._likeButton
-      .querySelector(".card__like-button")
-      .classList.toggle("card__like-button_active");
-  }
 
   _handleDeleteCard() {
     this._cardElement.remove();

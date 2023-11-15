@@ -77,18 +77,15 @@ export default class FormValidator {
     });
   }
 
-  validateModalOpened() {
+  resetValidation() {
     this._inputElements.forEach((inputElement) => {
       this._checkInputValidity(inputElement);
-      this._toggleButtonState();
     });
+    this._toggleButtonState();
   }
 
   disableSubmitButton() {
-    if (this._submitButton) {
-      this._submitButton.classList.add(this._inactiveButtonClass);
-      this._submitButton.disabled = true;
-    }
+    this._disableButton();
   }
 
   enableValidation() {

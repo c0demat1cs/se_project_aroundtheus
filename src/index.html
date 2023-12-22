@@ -8,16 +8,23 @@
       content="An interactive webpage where users can add and remove photos, like photos of other users, and make minor adjustments to their own profiles."
     />
     <title>Around The U.S</title>
-    <link href="./pages/index.css" rel="stylesheet" />
   </head>
   <body class="page">
     <div class="page__content">
       <header class="header page__section">
-        <img src="./images/logo.svg" alt="Around the U.S. logo" class="logo" />
+        <img
+          src="<%=require('./images/logo.svg')%>"
+          alt="Around the U.S. logo"
+          class="logo"
+        />
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img src="./images/Avatar.png" alt="Avatar" class="profile__image" />
+          <img
+            src="<%=require('./images/Avatar.png')%>"
+            alt="Avatar"
+            class="profile__image"
+          />
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button
@@ -34,7 +41,7 @@
           ></button>
         </section>
         <section class="cards page__section">
-          <ul class="cards__list"></ul>
+          <ul class="cards__list" id="cards__list"></ul>
         </section>
       </main>
       <footer class="footer">
@@ -130,6 +137,5 @@
         </div>
       </li>
     </template>
-    <script defer type="module" src="./pages/index.js"></script>
   </body>
 </html>

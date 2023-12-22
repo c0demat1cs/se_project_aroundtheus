@@ -1,5 +1,10 @@
+import "./index.css";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
+import { UserInfo } from "../components/UserInfo.js";
+import Section from "../components/Section.js";
+import PopupWithForm from "../components/popupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 
 const initialCards = [
   {
@@ -39,20 +44,65 @@ const settings = {
   errorClass: "modal__error_visible",
 };
 
+// New Edit Form Validator instance
 const editFormValidator = new FormValidator(
   settings,
   document.querySelector("#profile-form")
 );
+editFormValidator.enableValidation(); // call enable validation
 
-editFormValidator.enableValidation();
-
+// New Card form validator instance
 const cardFormValidator = new FormValidator(
   settings,
   document.querySelector("#add-card-form")
 );
+cardFormValidator.enableValidation(); // call enable validation
 
-cardFormValidator.enableValidation();
+// New Popup Form for adding a card
+const newCardPopup = new PopupWithForm("#add-card-modal", (formData) => {
+  const name = formData.name;
+  const link = formData.link;
+  handleNewCardSubmit(name, link);
+});
+newCardPopup.setEventListeners();
 
+// New Popup Form to edit profile
+const editProfilePopup = new PopupWithForm(
+  "#profile-edit-modal",
+  (formData) => {
+    const title = formData.title;
+    const description = formData.description;
+    document.profileTitle.textContent = title;
+    document.profileDescription.textContent = description;
+  }
+);
+editProfilePopup.setEventListeners();
+
+// New Popup with Image
+const popupWithImage = new PopupWithImage("#add-card-modal");
+popupWithImage.setEventListeners();
+
+// Instantiate User Info
+const userInfo = new UserInfo({
+  profileTitleSelector: ".profile__title",
+  profileDescriptionSelector: ".profile__description",
+});
+
+// Instance of Section
+const section = new Section(
+  {
+    items: initialCards,
+    renderer: (cardData) => {
+      // create the card
+      const cardElement = createCardElement(cardData);
+      // add the card element to the section
+      section.addItem(cardElement);
+    },
+  },
+  "#cards__list"
+);
+
+section.renderItems();
 /////////////////////////////////////////////////////////////////////
 
 // WRAPPERS
@@ -82,22 +132,22 @@ const cardForm = document.forms["card-form"];
 // FUNCTIONS
 
 // universal open button function
-function closePopup(modal) {
-  modal.classList.remove("modal_opened");
-  document.removeEventListener("keydown", handleKeyDown);
-}
+// function closePopup(modal) {
+//   modal.classList.remove("modal_opened");
+//   document.removeEventListener("keydown", handleKeyDown);
+// }
 
-function openPopup(modal) {
-  modal.classList.add("modal_opened");
-  document.addEventListener("keydown", handleKeyDown);
-}
+// function openPopup(modal) {
+//   modal.classList.add("modal_opened");
+//   document.addEventListener("keydown", handleKeyDown);
+// }
 
-function handleKeyDown(evt) {
-  if (evt.key === "Escape") {
-    const modal = document.querySelector(".modal_opened");
-    closePopup(modal);
-  }
-}
+// function handleKeyDown(evt) {
+//   if (evt.key === "Escape") {
+//     const modal = document.querySelector(".modal_opened");
+//     closePopup(modal);
+//   }
+// }
 
 // declare a function to handle image click
 function handleImageClick({ name, link }) {
@@ -168,4 +218,4 @@ popups.forEach((popup) => {
 });
 
 // Places new card at the beginning of the list
-initialCards.forEach((cardData) => renderCard(cardData, placesWrap));
+// initialCards.forEach((cardData) => renderCard(cardData, placesWrap));

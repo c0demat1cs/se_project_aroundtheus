@@ -52,7 +52,7 @@ export default class Card {
       this._handleDeleteCard();
     });
 
-    // Enabling this handler produces: Uncaught TypeError = handler is undefined.
+    // Handle image click
     this._cardImageEl.addEventListener("click", () => {
       this._handleImageClick({ name: this._name, link: this._link });
     });

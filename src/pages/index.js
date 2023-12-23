@@ -142,12 +142,12 @@ const cardForm = document.forms["card-form"];
 //   document.addEventListener("keydown", handleKeyDown);
 // }
 
-// function handleKeyDown(evt) {
-//   if (evt.key === "Escape") {
-//     const modal = document.querySelector(".modal_opened");
-//     closePopup(modal);
-//   }
-// }
+function handleKeyDown(evt) {
+  if (evt.key === "Escape") {
+    const modal = document.querySelector(".modal_opened");
+    closePopup(modal);
+  }
+}
 
 // declare a function to handle image click
 function handleImageClick({ name, link }) {

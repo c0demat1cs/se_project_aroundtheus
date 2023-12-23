@@ -21,6 +21,13 @@ class PopupWithForm extends Popup {
     return inputValues;
   }
 
+  // private Esc method
+  _handleEscClose = (evt) => {
+    if (evt.key === "Escape") {
+      this.close();
+    }
+  };
+
   // override the parent method
   setEventListeners() {
     super.setEventListeners(); // Call the setEventListeners method of the parent class (Popup)

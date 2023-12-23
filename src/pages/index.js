@@ -82,7 +82,7 @@ editProfilePopup.setEventListeners();
 const popupWithImage = new PopupWithImage("#add-card-modal");
 popupWithImage.setEventListeners();
 
-// Instantiate User Info
+// Instance of User Info
 const userInfo = new UserInfo({
   profileTitleSelector: ".profile__title",
   profileDescriptionSelector: ".profile__description",
@@ -142,12 +142,12 @@ const cardForm = document.forms["card-form"];
 //   document.addEventListener("keydown", handleKeyDown);
 // }
 
-function handleKeyDown(evt) {
-  if (evt.key === "Escape") {
-    const modal = document.querySelector(".modal_opened");
-    closePopup(modal);
-  }
-}
+// function handleKeyDown(evt) {
+//   if (evt.key === "Escape") {
+//     const modal = document.querySelector(".modal_opened");
+//     closePopup(modal);
+//   }
+// }
 
 // declare a function to handle image click
 function handleImageClick({ name, link }) {

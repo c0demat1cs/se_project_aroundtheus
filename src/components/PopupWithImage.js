@@ -9,7 +9,7 @@ class PopupWithImage extends Popup {
     this.popupElement.querySelector(".modal__popup-caption").textContent = name;
     const image = this.popupElement.querySelector(".modal__image");
     image.src = link;
-    image.alt = `A photo of ${name}`;
+    image.name = name;
     super.open();
   }
 }

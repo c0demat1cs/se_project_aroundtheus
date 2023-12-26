@@ -79,25 +79,17 @@ const editProfilePopup = new PopupWithForm(
 editProfilePopup.setEventListeners();
 
 // New Popup with Image
-const popupWithImage = new PopupWithImage("#add-card-modal");
+const popupWithImage = new PopupWithImage("#image-modal");
 popupWithImage.setEventListeners();
 
 // Instance of User Info
-const userInfo = new UserInfo({
-  profileTitleSelector: ".profile__title",
-  profileDescriptionSelector: ".profile__description",
-});
+const userInfo = new UserInfo(".profile__title", ".profile__description");
 
 // Instance of Section
 const section = new Section(
   {
     items: initialCards,
-    renderer: (cardData) => {
-      // create the card
-      const cardElement = createCardElement(cardData);
-      // add the card element to the section
-      section.addItem(cardElement);
-    },
+    renderer: createCard,
   },
   "#cards__list"
 );
@@ -131,6 +123,11 @@ const cardForm = document.forms["card-form"];
 
 // FUNCTIONS
 
+function createCard(cardData) {
+  const card = new Card(cardData, "#card-template", handleImageClick);
+  return card.getView();
+}
+
 // universal open button function
 // function closePopup(modal) {
 //   modal.classList.remove("modal_opened");
@@ -154,7 +151,7 @@ function handleImageClick({ name, link }) {
   modalImage.src = link;
   modalImage.alt = name;
   imageCaption.textContent = name;
-  openPopup(imageModal);
+  popupWithImage.open({ link, name });
 }
 
 // Places new card at the beginning of the list
@@ -196,26 +193,26 @@ profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
   editFormValidator.resetValidation();
-  openPopup(profileEditModal);
+  editProfilePopup.open();
 });
 // Listens for add button click, functions to open new card from modal.
 profileAddButton.addEventListener("click", () => {
-  openPopup(addCardModal);
+  newCardPopup.open();
 });
 
 // event listener to close modals by clicking on the overlay
-const popups = document.querySelectorAll(".modal");
+// const popups = document.querySelectorAll(".modal");
 
-popups.forEach((popup) => {
-  popup.addEventListener("mousedown", (evt) => {
-    if (evt.target.classList.contains("modal_opened")) {
-      closePopup(popup);
-    }
-    if (evt.target.classList.contains("modal__close")) {
-      closePopup(popup);
-    }
-  });
-});
+// popups.forEach((popup) => {
+//   popup.addEventListener("mousedown", (evt) => {
+//     if (evt.target.classList.contains("modal_opened")) {
+//       closePopup(popup);
+//     }
+//     if (evt.target.classList.contains("modal__close")) {
+//       closePopup(popup);
+//     }
+//   });
+// });
 
 // Places new card at the beginning of the list
 // initialCards.forEach((cardData) => renderCard(cardData, placesWrap));

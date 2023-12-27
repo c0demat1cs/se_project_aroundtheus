@@ -3,7 +3,7 @@ import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import { UserInfo } from "../components/UserInfo.js";
 import Section from "../components/Section.js";
-import PopupWithForm from "../components/popupWithForm.js";
+import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import {
   initialCards,
@@ -107,9 +107,6 @@ function createCard(cardData) {
 
 // declare a function to handle image click
 function handleImageClick({ name, link }) {
-  modalImage.src = link;
-  modalImage.alt = name;
-  imageCaption.textContent = name;
   popupWithImage.open({ link, name });
 }
 
@@ -124,9 +121,9 @@ function renderCard(cardData) {
 // Handles edit form submit
 function handleProfileEditSubmit() {
   // e.preventDefault();
-  profileTitle.textContent = profileTitleInput.value;
-  profileDescription.textContent = profileDescriptionInput.value;
-  cardFormValidator.disableSubmitButton();
+  // profileTitle.textContent = profileTitleInput.value;
+  // profileDescription.textContent = profileDescriptionInput.value;
+  editFormValidator.disableSubmitButton();
   editProfilePopup.close();
 }
 
@@ -145,8 +142,8 @@ function handleNewCardSubmit(name, link) {
 // cardForm.addEventListener("submit", handleNewCardSubmit);
 // listens for edit button click, functions to open the form modal.
 profileEditButton.addEventListener("click", () => {
-  profileTitleInput.value = profileTitle.textContent;
-  profileDescriptionInput.value = profileDescription.textContent;
+  // profileTitleInput.value = profileTitle.textContent;
+  // profileDescriptionInput.value = profileDescription.textContent;
   editFormValidator.resetValidation();
   editProfilePopup.open();
 });

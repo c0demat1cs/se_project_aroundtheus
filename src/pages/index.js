@@ -56,6 +56,7 @@ const editProfilePopup = new PopupWithForm(
     const title = formData.title;
     const description = formData.description;
     userInfo.setUserInfo(title, description);
+    handleProfileEditSubmit(formData);
   }
 );
 editProfilePopup.setEventListeners();
@@ -113,7 +114,7 @@ function handleImageClick({ name, link }) {
 }
 
 // Places new card at the beginning of the list
-function renderCard(cardData, wrapper) {
+function renderCard(cardData) {
   const card = new Card(cardData, "#card-template", handleImageClick);
   section.addItem(card.getView());
 }
@@ -121,8 +122,8 @@ function renderCard(cardData, wrapper) {
 // EVENT HANDLERS
 
 // Handles edit form submit
-function handleProfileEditSubmit(e) {
-  e.preventDefault();
+function handleProfileEditSubmit() {
+  // e.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
   cardFormValidator.disableSubmitButton();
@@ -133,7 +134,6 @@ function handleNewCardSubmit(name, link) {
   renderCard({ name, link }, placesWrap);
   cardFormValidator.disableSubmitButton();
   // e.target.reset();
-
   newCardPopup.close();
 }
 

@@ -43,7 +43,7 @@ cardFormValidator.enableValidation(); // call enable validation
 
 // New Popup Form for adding a card
 const newCardPopup = new PopupWithForm("#add-card-modal", (formData) => {
-  const name = formData.name;
+  const name = formData.title;
   const link = formData.link;
   handleNewCardSubmit(name, link);
 });
@@ -55,8 +55,7 @@ const editProfilePopup = new PopupWithForm(
   (formData) => {
     const title = formData.title;
     const description = formData.description;
-    document.profileTitle.textContent = title;
-    document.profileDescription.textContent = description;
+    userInfo.setUserInfo(title, description);
   }
 );
 editProfilePopup.setEventListeners();
@@ -116,7 +115,7 @@ function handleImageClick({ name, link }) {
 // Places new card at the beginning of the list
 function renderCard(cardData, wrapper) {
   const card = new Card(cardData, "#card-template", handleImageClick);
-  wrapper.prepend(card.getView());
+  section.addItem(card.getView());
 }
 
 // EVENT HANDLERS
@@ -127,26 +126,23 @@ function handleProfileEditSubmit(e) {
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
   cardFormValidator.disableSubmitButton();
-  closePopup(profileEditModal);
+  editProfilePopup.close();
 }
 
-function handleNewCardSubmit(e) {
-  e.preventDefault();
-  const name = cardTitleInput.value;
-  const link = cardLinkInput.value;
+function handleNewCardSubmit(name, link) {
   renderCard({ name, link }, placesWrap);
   cardFormValidator.disableSubmitButton();
-  e.target.reset();
+  // e.target.reset();
 
-  closePopup(addCardModal);
+  newCardPopup.close();
 }
 
 // EVENT LISTENERS
 
 // Listens for submit on profile edit form
-profileForm.addEventListener("submit", handleProfileEditSubmit);
+// profileForm.addEventListener("submit", handleProfileEditSubmit);
 // Listens for submit on add new card form
-cardForm.addEventListener("submit", handleNewCardSubmit);
+// cardForm.addEventListener("submit", handleNewCardSubmit);
 // listens for edit button click, functions to open the form modal.
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;

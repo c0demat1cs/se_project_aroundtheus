@@ -5,44 +5,27 @@ import { UserInfo } from "../components/UserInfo.js";
 import Section from "../components/Section.js";
 import PopupWithForm from "../components/popupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
-
-const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-  },
-  {
-    name: "Lake Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg ",
-  },
-];
+import {
+  initialCards,
+  settings,
+  placesWrap,
+  profileEditModal,
+  addCardModal,
+  modalImage,
+  imageCaption,
+  profileAddButton,
+  profileEditButton,
+  cardTitleInput,
+  cardLinkInput,
+  profileTitle,
+  profileDescription,
+  profileTitleInput,
+  profileDescriptionInput,
+  profileForm,
+  cardForm,
+} from "../utils/constants.js";
 
 /////////////////////////////////////////////////////////////////////
-// creates an instance of the FormValidator class for the profile form
-const settings = {
-  formSelector: ".modal__form",
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__button",
-  inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible",
-};
 
 // New Edit Form Validator instance
 const editFormValidator = new FormValidator(
@@ -96,30 +79,6 @@ const section = new Section(
 
 section.renderItems();
 /////////////////////////////////////////////////////////////////////
-
-// WRAPPERS
-const placesWrap = document.querySelector(".cards__list");
-const profileEditModal = document.querySelector("#profile-edit-modal");
-const addCardModal = document.querySelector("#add-card-modal");
-const imageModal = document.querySelector("#image-modal");
-const modalImage = imageModal.querySelector(".modal__image");
-const imageCaption = document.querySelector(".modal__popup-caption");
-
-// BUTTONS AND OTHER DOM ELEMENTS
-const profileAddButton = document.querySelector("#profile-add-button");
-const profileEditButton = document.querySelector("#profile-edit-button");
-
-// FORM DATA
-const cardTitleInput = document.querySelector("#card-title-input");
-const cardLinkInput = document.querySelector("#card-link-input");
-const profileTitle = document.querySelector(".profile__title");
-const profileDescription = document.querySelector(".profile__description");
-const profileTitleInput = document.querySelector("#profile-title-input");
-const profileDescriptionInput = document.querySelector(
-  "#profile-description-input"
-);
-const profileForm = document.forms["profile-form"];
-const cardForm = document.forms["card-form"];
 
 // FUNCTIONS
 

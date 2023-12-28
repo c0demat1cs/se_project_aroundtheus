@@ -7,29 +7,30 @@ class PopupWithForm extends Popup {
     super({ popupSelector }); // call the constructor of the parent class Popup
     this._popupForm = this._popupElement.querySelector(".modal__form"); // access the form element inside the popup
     this._handleFormSubmit = handleFormSubmit; // save the handleFormSubmit function for later use
+    this._inputFields = this._popupForm.querySelectorAll(".modal__input");
+    this._formSubmitHandler = this._formSubmitHandler.bind(this); // binds evt lstnr to this
   }
 
   // collects data from all the input fields and returns it as an object
   _getInputValues() {
     const inputValues = {};
-    const inputFields = this._popupForm.querySelectorAll(".modal__input");
-
-    inputFields.forEach((input) => {
+    this._inputFields.forEach((input) => {
       inputValues[input.name] = input.value;
     });
-
     return inputValues;
   }
 
   // override the parent method
   setEventListeners() {
-    super.setEventListeners(); // Call the setEventListeners method of the parent class (Popup)
-    // form submit event handler
-    this._popupForm.addEventListener("submit", (evt) => {
-      evt.preventDefault();
-      // input values passed to the submission handler
-      this._handleFormSubmit(this._getInputValues());
-    });
+    super.setEventListeners();
+    // listens for form submission
+    this._popupForm.addEventListener("submit", this._formSubmitHandler);
+  }
+
+  // handle form submit
+  _formSubmitHandler(evt) {
+    evt.preventDefault();
+    this._handleFormSubmit(this._getInputValues());
   }
 
   // closes and resets the form

@@ -13,7 +13,7 @@ export default class Popup {
   // closes popup
   close() {
     this._popupElement.classList.remove("modal_opened");
-    document.addEventListener("keydown", this._handleKeyDown);
+    document.removeEventListener("keydown", this._handleKeyDown);
   }
 
   // listens for esc button

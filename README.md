@@ -28,5 +28,5 @@ This project involves creating an interactive webpage where users can add and re
 
 ## Plan on improving the project
 
-- Add comment section to images.
-- Make all aspects of the profile editable.
+- universally create instances of validators for all forms in the project storing them inside one object formValidators.
+- make setInputValues in class PopupWithForm, which can insert data into inputs.

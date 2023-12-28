@@ -3,7 +3,7 @@ import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import { UserInfo } from "../components/UserInfo.js";
 import Section from "../components/Section.js";
-import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithForm from "../components/popupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import {
   initialCards,
@@ -26,6 +26,7 @@ import {
 } from "../utils/constants.js";
 
 /////////////////////////////////////////////////////////////////////
+// CLASS INSTANCES
 
 // New Edit Form Validator instance
 const editFormValidator = new FormValidator(
@@ -87,24 +88,6 @@ function createCard(cardData) {
   return card.getView();
 }
 
-// universal open button function
-// function closePopup(modal) {
-//   modal.classList.remove("modal_opened");
-//   document.removeEventListener("keydown", handleKeyDown);
-// }
-
-// function openPopup(modal) {
-//   modal.classList.add("modal_opened");
-//   document.addEventListener("keydown", handleKeyDown);
-// }
-
-// function handleKeyDown(evt) {
-//   if (evt.key === "Escape") {
-//     const modal = document.querySelector(".modal_opened");
-//     closePopup(modal);
-//   }
-// }
-
 // declare a function to handle image click
 function handleImageClick({ name, link }) {
   popupWithImage.open({ link, name });
@@ -120,9 +103,6 @@ function renderCard(cardData) {
 
 // Handles edit form submit
 function handleProfileEditSubmit() {
-  // e.preventDefault();
-  // profileTitle.textContent = profileTitleInput.value;
-  // profileDescription.textContent = profileDescriptionInput.value;
   editFormValidator.disableSubmitButton();
   editProfilePopup.close();
 }
@@ -136,35 +116,15 @@ function handleNewCardSubmit(name, link) {
 
 // EVENT LISTENERS
 
-// Listens for submit on profile edit form
-// profileForm.addEventListener("submit", handleProfileEditSubmit);
-// Listens for submit on add new card form
-// cardForm.addEventListener("submit", handleNewCardSubmit);
-// listens for edit button click, functions to open the form modal.
 profileEditButton.addEventListener("click", () => {
-  // profileTitleInput.value = profileTitle.textContent;
-  // profileDescriptionInput.value = profileDescription.textContent;
+  const userData = userInfo.getUserInfo();
+  profileTitleInput.value = userData.title;
+  profileDescriptionInput.value = userData.description;
   editFormValidator.resetValidation();
   editProfilePopup.open();
 });
+
 // Listens for add button click, functions to open new card from modal.
 profileAddButton.addEventListener("click", () => {
   newCardPopup.open();
 });
-
-// event listener to close modals by clicking on the overlay
-// const popups = document.querySelectorAll(".modal");
-
-// popups.forEach((popup) => {
-//   popup.addEventListener("mousedown", (evt) => {
-//     if (evt.target.classList.contains("modal_opened")) {
-//       closePopup(popup);
-//     }
-//     if (evt.target.classList.contains("modal__close")) {
-//       closePopup(popup);
-//     }
-//   });
-// });
-
-// Places new card at the beginning of the list
-// initialCards.forEach((cardData) => renderCard(cardData, placesWrap));

@@ -85,8 +85,13 @@ section.renderItems();
 
 function createCard(cardData) {
   const card = new Card(cardData, "#card-template", handleImageClick);
-  const cardView = card.getView();
-  section.addItem(cardView);
+  return card.getView();
+}
+
+//render card
+function renderCard(cardData) {
+  const card = new Card(cardData, "#card-template", handleImageClick);
+  section.addItem(card.getView());
 }
 
 // declare a function to handle image click
@@ -103,9 +108,8 @@ function handleProfileEditSubmit() {
 }
 
 function handleNewCardSubmit(name, link) {
-  createCard({ name, link }, placesWrap);
+  renderCard({ name, link }, placesWrap);
   cardFormValidator.disableSubmitButton();
-  // e.target.reset();
   newCardPopup.close();
 }
 

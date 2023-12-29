@@ -90,8 +90,8 @@ function createCard(cardData) {
 
 //render card
 function renderCard(cardData) {
-  const card = new Card(cardData, "#card-template", handleImageClick);
-  section.addItem(card.getView());
+  const cardView = createCard(cardData);
+  section.addItem(cardView);
 }
 
 // declare a function to handle image click

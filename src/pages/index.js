@@ -85,18 +85,13 @@ section.renderItems();
 
 function createCard(cardData) {
   const card = new Card(cardData, "#card-template", handleImageClick);
-  return card.getView();
+  const cardView = card.getView();
+  section.addItem(cardView);
 }
 
 // declare a function to handle image click
 function handleImageClick({ name, link }) {
   popupWithImage.open({ link, name });
-}
-
-// Places new card at the beginning of the list
-function renderCard(cardData) {
-  const card = new Card(cardData, "#card-template", handleImageClick);
-  section.addItem(card.getView());
 }
 
 // EVENT HANDLERS
@@ -108,7 +103,7 @@ function handleProfileEditSubmit() {
 }
 
 function handleNewCardSubmit(name, link) {
-  renderCard({ name, link }, placesWrap);
+  createCard({ name, link }, placesWrap);
   cardFormValidator.disableSubmitButton();
   // e.target.reset();
   newCardPopup.close();

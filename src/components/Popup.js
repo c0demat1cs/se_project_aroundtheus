@@ -24,7 +24,7 @@ export default class Popup {
   }
 
   // sets event listeners
-  setEventListeners() {
+  setEventListeners() { 
     const closeButton = this._popupElement.querySelector(".modal__close");
     if (closeButton) {
       closeButton.addEventListener("click", () => this.close());

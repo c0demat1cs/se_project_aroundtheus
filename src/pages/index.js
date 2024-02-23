@@ -78,11 +78,11 @@ const section = new Section(
   "#cards__list"
 );
 
-// section.renderItems();
+section.renderItems();
 
 // Instance of Api
 const api = new Api({
-  baseUrl: "https://around-api.en.tripleten-services.com/v1/users/me",
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
     authorization: "d918969b-47fa-4f72-8138-61be6ab55840",
     "Content-Type": "application/json",
@@ -98,24 +98,6 @@ api
   .catch((err) => {
     console.error(err); // log the error to the console
   });
-
-// get user information and update header elements
-api
-  .getUserInfo()
-  .then((result) => {
-    // process the result
-    userInfo.setUserInfo(result);
-  })
-  .catch((err) => {
-    console.error(err); // log the error to the console
-  });
-
-// Call the function to fetch data for rendering
-// api.fetchDataForRender().then((data) => {
-//   const [cards, userData] = data;
-//   section.renderItems(cards);
-//   userInfo.setUserInfo(userData);
-// });
 
 /////////////////////////////////////////////////////////////////////
 

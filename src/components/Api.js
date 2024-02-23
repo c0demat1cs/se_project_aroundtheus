@@ -2,7 +2,7 @@ export default class Api {
   constructor(options) {
     this.baseUrl = options.baseUrl;
     this.headers = options.headers;
-    this.contentType = options.contentType || "application/json";
+    this.contentType = options.contentType; // "application/json"
   }
 
   // function to get user info from the server

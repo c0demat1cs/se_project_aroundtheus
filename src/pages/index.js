@@ -78,7 +78,8 @@ const section = new Section(
   "#cards__list"
 );
 
-section.renderItems();
+//manual rendering of initial cards
+// section.renderItems();
 
 // Instance of Api
 const api = new Api({
@@ -89,6 +90,7 @@ const api = new Api({
   },
 });
 
+// fetch and render initial cards
 api
   .getInitialCards()
   .then((result) => {
@@ -125,12 +127,31 @@ function handleImageClick({ name, link }) {
 function handleProfileEditSubmit() {
   editFormValidator.disableSubmitButton();
   editProfilePopup.close();
+  api
+    .editProfileInfo({
+      name: profileTitleInput.value,
+      about: profileDescriptionInput.value,
+    })
+    .then((data) => {
+      userInfo.setUserInfo(data.name, data.about);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 }
 
 function handleNewCardSubmit(name, link) {
   renderCard({ name, link }, placesWrap);
   cardFormValidator.disableSubmitButton();
   newCardPopup.close();
+  api
+    .addNewCard({ name, link })
+    .then((data) => {
+      renderCard(data);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 }
 
 // EVENT LISTENERS

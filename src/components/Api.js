@@ -39,10 +39,7 @@ export default class Api {
   editProfileInfo({ name, about }) {
     return fetch(`${this.baseUrl}/users/me`, {
       method: "PATCH",
-      headers: {
-        authorization: this.headers.authorization,
-        "Content-Type": this.contentType,
-      },
+      headers: this.headers,
       body: JSON.stringify({
         name: name,
         about: about,
@@ -60,10 +57,7 @@ export default class Api {
   addNewCard({ name, link }) {
     return fetch(`${this.baseUrl}/cards`, {
       method: "POST",
-      headers: {
-        authorization: this.headers.authorization,
-        "Content-Type": this.contentType,
-      },
+      headers: this.headers,
       body: JSON.stringify({
         name: name,
         link: link,
@@ -81,9 +75,7 @@ export default class Api {
   deleteCard(cardId) {
     return fetch(`${this.baseUrl}/cards/${cardId}`, {
       method: "DELETE",
-      headers: {
-        authorization: this.headers.authorization,
-      },
+      headers: this.headers,
     }).then((res) => {
       if (res.ok) {
         return res.json();

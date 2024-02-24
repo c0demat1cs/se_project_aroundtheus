@@ -5,28 +5,26 @@ import { UserInfo } from "../components/UserInfo.js";
 import Section from "../components/Section.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 import {
+  cardDeleteButton,
   initialCards,
   settings,
-  placesWrap,
-  profileEditModal,
-  addCardModal,
-  modalImage,
-  imageCaption,
   profileAddButton,
   profileEditButton,
-  cardTitleInput,
-  cardLinkInput,
-  profileTitle,
-  profileDescription,
   profileTitleInput,
   profileDescriptionInput,
-  profileForm,
-  cardForm,
 } from "../utils/constants.js";
 import Api from "../components/Api.js";
 /////////////////////////////////////////////////////////////////////
 // CLASS INSTANCES
+
+// new popup for deleting a card
+const deleteCardPopup = new PopupWithConfirmation(
+  "#delete-card-modal",
+  handleDeleteCard
+);
+deleteCardPopup.setEventListeners();
 
 // New Edit Form Validator instance
 const editFormValidator = new FormValidator(
@@ -53,12 +51,7 @@ newCardPopup.setEventListeners();
 // New Popup Form to edit profile
 const editProfilePopup = new PopupWithForm(
   "#profile-edit-modal",
-  (formData) => {
-    const title = formData.title;
-    const description = formData.description;
-    userInfo.setUserInfo(title, description);
-    handleProfileEditSubmit(formData);
-  }
+  handleProfileEditSubmit
 );
 editProfilePopup.setEventListeners();
 
@@ -121,19 +114,21 @@ function handleImageClick({ name, link }) {
   popupWithImage.open({ link, name });
 }
 
+// function to delete card
+
 // EVENT HANDLERS
 
 // Handles edit form submit
-function handleProfileEditSubmit() {
-  editFormValidator.disableSubmitButton();
-  editProfilePopup.close();
+function handleProfileEditSubmit({ title, description }) {
   api
     .editProfileInfo({
-      name: profileTitleInput.value,
-      about: profileDescriptionInput.value,
+      name: title,
+      about: description,
     })
     .then((data) => {
       userInfo.setUserInfo(data.name, data.about);
+      editFormValidator.disableSubmitButton();
+      editProfilePopup.close();
     })
     .catch((err) => {
       console.error(err);
@@ -141,13 +136,27 @@ function handleProfileEditSubmit() {
 }
 
 function handleNewCardSubmit(name, link) {
-  renderCard({ name, link }, placesWrap);
-  cardFormValidator.disableSubmitButton();
-  newCardPopup.close();
   api
-    .addNewCard({ name, link })
+    .addNewCard({
+      name: name,
+      link: link,
+    })
     .then((data) => {
       renderCard(data);
+      cardFormValidator.disableSubmitButton();
+      newCardPopup.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}
+
+function handleDeleteCard(card) {
+  api
+    .deleteCard(card)
+    .then(() => {
+      card.remove();
+      deleteCardPopup.close();
     })
     .catch((err) => {
       console.error(err);

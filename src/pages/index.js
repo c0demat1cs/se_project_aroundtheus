@@ -7,7 +7,6 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 import {
-  cardDeleteButton,
   initialCards,
   settings,
   profileAddButton,
@@ -24,6 +23,7 @@ const deleteCardPopup = new PopupWithConfirmation(
   "#delete-card-modal",
   handleDeleteCard
 );
+// set event listeners for delete card popup
 deleteCardPopup.setEventListeners();
 
 // New Edit Form Validator instance
@@ -99,7 +99,9 @@ api
 // FUNCTIONS
 
 function createCard(cardData) {
-  const card = new Card(cardData, "#card-template", handleImageClick);
+  const card = new Card(cardData, "#card-template", handleImageClick, () => {
+    deleteCardPopup.open(card);
+  });
   return card.getView();
 }
 
@@ -113,8 +115,6 @@ function renderCard(cardData) {
 function handleImageClick({ name, link }) {
   popupWithImage.open({ link, name });
 }
-
-// function to delete card
 
 // EVENT HANDLERS
 

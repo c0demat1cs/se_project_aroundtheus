@@ -1,13 +1,13 @@
 import Popup from "./Popup";
 
 class PopupWithConfirmation extends Popup {
-  constructor(popupSelector, handleDeleteCard) {
+  constructor(popupSelector, handleCardDelete) {
     super({ popupSelector });
-    this._handleDeleteCard = handleDeleteCard;
+    this._handleCardDelete = handleCardDelete;
   }
 
-  _handleDeleteCard() {
-    this._handleDeleteCard();
+  _handleCardDelete() {
+    this._handleCardDelete();
   }
 }
 

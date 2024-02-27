@@ -12,19 +12,12 @@ import {
   profileAddButton,
   profileEditButton,
   profileTitleInput,
+  profileAvatar,
   profileDescriptionInput,
 } from "../utils/constants.js";
 import Api from "../components/Api.js";
 /////////////////////////////////////////////////////////////////////
 // CLASS INSTANCES
-
-// new popup for deleting a card
-const deleteCardPopup = new PopupWithConfirmation(
-  "#delete-card-modal",
-  handleDeleteCard
-);
-// set event listeners for delete card popup
-deleteCardPopup.setEventListeners();
 
 // New Edit Form Validator instance
 const editFormValidator = new FormValidator(
@@ -39,6 +32,13 @@ const cardFormValidator = new FormValidator(
   document.querySelector("#add-card-form")
 );
 cardFormValidator.enableValidation(); // call enable validation
+
+// new avatar form validator instance
+const avatarFormValidator = new FormValidator(
+  settings,
+  document.querySelector("#avatar-form")
+);
+avatarFormValidator.enableValidation(); // call enable validation
 
 // New Popup Form for adding a card
 const newCardPopup = new PopupWithForm("#add-card-modal", (formData) => {
@@ -58,6 +58,21 @@ editProfilePopup.setEventListeners();
 // New Popup with Image
 const popupWithImage = new PopupWithImage("#image-modal");
 popupWithImage.setEventListeners();
+
+// new popup for deleting a card
+const deleteCardPopup = new PopupWithConfirmation(
+  "#delete-card-modal",
+  handleDeleteCard
+);
+// set event listeners for delete card popup
+deleteCardPopup.setEventListeners();
+
+// new popup for changing avatar
+const changeAvatarPopup = new PopupWithForm(
+  "#avatar-modal",
+  handleAvatarSubmit
+);
+changeAvatarPopup.setEventListeners();
 
 // Instance of User Info
 const userInfo = new UserInfo(".profile__title", ".profile__description");
@@ -163,6 +178,21 @@ function handleDeleteCard(card) {
       console.error(err);
     });
 }
+// handles avatar form submit with api
+function handleAvatarSubmit() {
+  api
+    .updateAvatar({
+      avatar: avatar,
+    })
+    .then((data) => {
+      userInfo.setUserInfo(data.name, data.about);
+      avatarFormValidator.disableSubmitButton();
+      changeAvatarPopup.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}
 
 // EVENT LISTENERS
 
@@ -177,4 +207,9 @@ profileEditButton.addEventListener("click", () => {
 // Listens for add button click, functions to open new card from modal.
 profileAddButton.addEventListener("click", () => {
   newCardPopup.open();
+});
+
+// Listens for avatar click, functions to open change avatar modal.
+profileAvatar.addEventListener("click", () => {
+  changeAvatarPopup.open();
 });

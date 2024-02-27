@@ -44,7 +44,7 @@ export const imageCaption = document.querySelector(".modal__popup-caption");
 // BUTTONS AND OTHER DOM ELEMENTS
 export const profileAddButton = document.querySelector("#profile-add-button");
 export const profileEditButton = document.querySelector("#profile-edit-button");
-export const profileAvatar = document.querySelector(".profile__avatar");
+export const profileAvatar = document.querySelector(".profile__image");
 
 // FORM DATA
 export const cardTitleInput = document.querySelector("#card-title-input");

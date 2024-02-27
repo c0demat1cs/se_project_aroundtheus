@@ -123,6 +123,24 @@
         </form>
       </div>
     </div>
+    <!-- CHANGE AVATAR MODAL -->
+    <div class="modal" id="avatar-modal">
+      <div class="modal__container">
+        <button class="modal__close" id="avatar-close-button"></button>
+        <p class="modal__heading">Change profile picture</p>
+        <form class="modal__form" id="avatar-form" name="avatar-form">
+          <input
+            class="modal__input modal__input_type_link"
+            type="url"
+            id="avatar-link-input"
+            name="link"
+            placeholder="Image link"
+            required
+          />
+          <span class="modal__error" id="avatar-link-input-error"></span>
+          <button class="modal__button modal__button_disabled">Save</button>
+        </form>
+      </div>
     <!-- IMAGE MODAL  -->
     <div class="modal" id="image-modal">
       <figure class="modal__image-container">

@@ -78,7 +78,7 @@ export default class Api {
       headers: this.headers,
     }).then((res) => {
       if (res.ok) {
-        return res.json();
+        return Promise.resolve("Card deleted");
       }
       // if the server returns an error, reject the promise
       return Promise.reject(`Error: ${res.status}`);

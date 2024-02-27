@@ -113,6 +113,7 @@ function renderCard(cardData) {
 
 // declare a function to handle image click
 function handleImageClick({ name, link }) {
+  // open the popup with the image
   popupWithImage.open({ link, name });
 }
 
@@ -153,9 +154,9 @@ function handleNewCardSubmit(name, link) {
 
 function handleDeleteCard(card) {
   api
-    .deleteCard(card)
+    .deleteCard(card.getId())
     .then(() => {
-      card.remove();
+      card.removeCard();
       deleteCardPopup.close();
     })
     .catch((err) => {

@@ -185,7 +185,7 @@ function handleAvatarSubmit() {
       avatar: avatar,
     })
     .then((data) => {
-      userInfo.setUserInfo(data.name, data.about);
+      profileAvatar.src = data.avatar;
       avatarFormValidator.disableSubmitButton();
       changeAvatarPopup.close();
     })

@@ -3,13 +3,15 @@ export default class Card {
     { name, link },
     cardSelector,
     handleImageClick,
-    _handleDeleteCard
+    _handleDeleteCard,
+    handleLikeClick
   ) {
     this._name = name;
     this._link = link;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
     this._handleDeleteCard = _handleDeleteCard;
+    this._handleLikeClick = handleLikeClick;
   }
 
   //  METHODS
@@ -48,6 +50,7 @@ export default class Card {
   _setEventListeners() {
     this._likeButton.addEventListener("click", () => {
       this._handleLikeIcon();
+      this._handleLikeClick();
     });
 
     this._deleteButton.addEventListener("click", () => {
@@ -62,8 +65,8 @@ export default class Card {
 
   // HANDLERS;
 
-  _deleteCard() {
+  _deleteCard = () => {
     this._cardElement.remove();
     this._cardElement = null;
-  }
+  };
 }

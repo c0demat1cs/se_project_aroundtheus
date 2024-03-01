@@ -1,11 +1,16 @@
 export class UserInfo {
   // pass in selector's as arguments
-  constructor(profileTitleSelector, profileDescriptionSelector) {
+  constructor(
+    profileTitleSelector,
+    profileDescriptionSelector,
+    profileAvatarSelector
+  ) {
     // use query selector to get elements and assign to this
     this._profileTitleElement = document.querySelector(profileTitleSelector);
     this._profileDescriptionElement = document.querySelector(
       profileDescriptionSelector
     );
+    this._profileAvatarElement = document.querySelector(profileAvatarSelector);
   }
 
   getUserInfo() {
@@ -21,6 +26,11 @@ export class UserInfo {
     this._profileTitleElement.textContent = title;
     this._profileDescriptionElement.textContent = description;
     // similarly for the other element
+  }
+
+  setAvatar(link) {
+    // set the "src" of the avatar element
+    this._profileAvatarElement.src = link;
   }
 }
 

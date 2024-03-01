@@ -2,15 +2,13 @@ export default class Api {
   constructor(options) {
     this.baseUrl = options.baseUrl;
     this.headers = options.headers;
-    this.contentType = options.contentType; // "application/json"
+    // this.contentType = options.contentType; // "application/json"
   }
 
   // function to get user info from the server
   getUserInfo() {
     return fetch(`${this.baseUrl}/users/me`, {
-      headers: {
-        authorization: this.headers.authorization,
-      },
+      headers: this.headers,
     }).then((res) => {
       if (res.ok) {
         return res.json();
@@ -23,9 +21,7 @@ export default class Api {
   // loading cards from the server
   getInitialCards() {
     return fetch(`${this.baseUrl}/cards`, {
-      headers: {
-        authorization: this.headers.authorization,
-      },
+      headers: this.headers,
     }).then((res) => {
       if (res.ok) {
         return res.json();
@@ -85,13 +81,25 @@ export default class Api {
     });
   }
 
-  //adding and removing likes
-  isLiked(cardId, isLiked) {
+  // like a card
+  likeCard(cardId) {
     return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
-      method: isLiked ? "PUT" : "DELETE",
-      headers: {
-        authorization: this.headers.authorization,
-      },
+      method: "PUT",
+      headers: this.headers,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      // if the server returns an error, reject the promise
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
+
+  // remove a like
+  removeLike(cardId) {
+    return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
+      method: "DELETE",
+      headers: this.headers,
     }).then((res) => {
       if (res.ok) {
         return res.json();
@@ -105,10 +113,7 @@ export default class Api {
   updateAvatar({ avatar }) {
     return fetch(`${this.baseUrl}/users/me/avatar`, {
       method: "PATCH",
-      headers: {
-        authorization: this.headers.authorization,
-        "Content-Type": this.contentType,
-      },
+      headers: this.headers,
       body: JSON.stringify({
         avatar: avatar,
       }),

@@ -75,7 +75,11 @@ const changeAvatarPopup = new PopupWithForm(
 changeAvatarPopup.setEventListeners();
 
 // Instance of User Info
-const userInfo = new UserInfo(".profile__title", ".profile__description");
+const userInfo = new UserInfo(
+  ".profile__title",
+  ".profile__description",
+  ".profile__image"
+);
 
 // Instance of Section
 const section = new Section(
@@ -109,14 +113,33 @@ api
     console.error(err); // log the error to the console
   });
 
-/////////////////////////////////////////////////////////////////////
+// fetch and render user info
+api
+  .getUserInfo()
+  .then((result) => {
+    // update UI to reflect the user info from the db
+    // console.log(result);
+    userInfo.setUserInfo(result.name, result.about);
+    userInfo.setAvatar(result.avatar);
+  })
+  .catch((err) => {
+    console.error(err); // log the error to the console
+  });
+
+//////////////////////////////////////////////////////////
 
 // FUNCTIONS
 
 function createCard(cardData) {
-  const card = new Card(cardData, "#card-template", handleImageClick, () => {
-    deleteCardPopup.open(card);
-  });
+  const card = new Card(
+    cardData,
+    "#card-template",
+    handleImageClick,
+    () => {
+      deleteCardPopup.open(card);
+    },
+    handleLikeClick
+  );
   return card.getView();
 }
 
@@ -178,8 +201,23 @@ function handleDeleteCard(card) {
       console.error(err);
     });
 }
+
+// function to handle like button click
+function handleLikeClick(card) {
+  const cardId = card.getId();
+  api
+    .likeCard(cardId)
+    .then((data) => {
+      console.log("Card liked:", data);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}
+
 // handles avatar form submit with api
 function handleAvatarSubmit() {
+  const avatar = document.querySelector("#avatar-link-input").value;
   api
     .updateAvatar({
       avatar: avatar,

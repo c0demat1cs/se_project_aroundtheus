@@ -7,7 +7,6 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 import {
-  initialCards,
   settings,
   profileAddButton,
   profileEditButton,
@@ -81,15 +80,6 @@ const userInfo = new UserInfo(
   ".profile__image"
 );
 
-// Instance of Section
-const section = new Section(
-  {
-    items: initialCards,
-    renderer: createCard,
-  },
-  "#cards__list"
-);
-
 //manual rendering of initial cards
 // section.renderItems();
 
@@ -102,11 +92,20 @@ const api = new Api({
   },
 });
 
+let section; // declare section variable
+
 // fetch and render initial cards
 api
   .getInitialCards()
   .then((result) => {
-    // process the result
+    // Instance of Section
+    let section = new Section(
+      {
+        items: result,
+        renderer: createCard,
+      },
+      "#cards__list"
+    );
     section.renderItems(result);
   })
   .catch((err) => {

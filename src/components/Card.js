@@ -65,7 +65,7 @@ export default class Card {
     });
 
     this._deleteButton.addEventListener("click", () => {
-      this._handleDeleteCard();
+      this._handleDeleteCard(this);
     });
 
     // Handle image click
@@ -76,7 +76,7 @@ export default class Card {
 
   // HANDLERS;
 
-  _deleteCard = () => {
+  deleteCard = () => {
     this._cardElement.remove();
     this._cardElement = null;
   };

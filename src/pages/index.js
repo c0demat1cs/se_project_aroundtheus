@@ -80,9 +80,6 @@ const userInfo = new UserInfo(
   ".profile__image"
 );
 
-//manual rendering of initial cards
-// section.renderItems();
-
 // Instance of Api
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -92,7 +89,7 @@ const api = new Api({
   },
 });
 
-let section; // declare section variable
+// let section; // declare section variable
 
 // fetch and render initial cards
 api
@@ -134,9 +131,7 @@ function createCard(cardData) {
     cardData,
     "#card-template",
     handleImageClick,
-    () => {
-      deleteCardPopup.open(card);
-    },
+    handleDeleteCard,
     handleLikeClick
   );
   return card.getView();
@@ -145,6 +140,7 @@ function createCard(cardData) {
 //render card
 function renderCard(cardData) {
   const cardView = createCard(cardData);
+  const section = new Section({}, "#cards__list");
   section.addItem(cardView);
 }
 
@@ -173,6 +169,7 @@ function handleProfileEditSubmit({ title, description }) {
     });
 }
 
+// handles new card submission
 function handleNewCardSubmit(name, link) {
   api
     .addNewCard({
@@ -189,11 +186,11 @@ function handleNewCardSubmit(name, link) {
     });
 }
 
+// handles deleting card
 function handleDeleteCard(card) {
   api
     .deleteCard(card.getId())
     .then(() => {
-      card.removeCard();
       deleteCardPopup.close();
     })
     .catch((err) => {

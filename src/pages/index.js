@@ -10,13 +10,15 @@ import {
   settings,
   profileAddButton,
   profileEditButton,
+  profileAvatarButton,
   profileTitleInput,
   profileAvatar,
   profileDescriptionInput,
 } from "../utils/constants.js";
 import Api from "../components/Api.js";
-/////////////////////////////////////////////////////////////////////
-// CLASS INSTANCES
+/////////////////////////////////////////////////////////////////////\
+
+// =========  FORM VALIDATORS  ========= //
 
 // New Edit Form Validator instance
 const editFormValidator = new FormValidator(
@@ -38,6 +40,8 @@ const avatarFormValidator = new FormValidator(
   document.querySelector("#avatar-form")
 );
 avatarFormValidator.enableValidation(); // call enable validation
+
+// =========  POPUP CLASS INSTANCES ========= //
 
 // New Popup Form for adding a card
 const newCardPopup = new PopupWithForm("#add-card-modal", (formData) => {
@@ -73,12 +77,16 @@ const changeAvatarPopup = new PopupWithForm(
 );
 changeAvatarPopup.setEventListeners();
 
+// =========  USER INFO  ========= //
+
 // Instance of User Info
 const userInfo = new UserInfo(
   ".profile__title",
   ".profile__description",
   ".profile__image"
 );
+
+// =========  APIs  ========= //
 
 // Instance of Api
 const api = new Api({
@@ -89,8 +97,6 @@ const api = new Api({
   },
 });
 
-// let section; // declare section variable
-
 // fetch and render initial cards
 api
   .getInitialCards()
@@ -98,7 +104,7 @@ api
     // Instance of Section
     let section = new Section(
       {
-        items: result,
+        items: result.reverse(),
         renderer: createCard,
       },
       "#cards__list"
@@ -124,7 +130,7 @@ api
 
 //////////////////////////////////////////////////////////
 
-// FUNCTIONS
+// =========  FUNCTIONS  ========= //
 
 function createCard(cardData) {
   const card = new Card(
@@ -132,25 +138,24 @@ function createCard(cardData) {
     "#card-template",
     handleImageClick,
     handleDeleteCard,
-    handleLikeClick
+    handleLikeClick,
+    handleUnlikeClick
   );
   return card.getView();
 }
 
-//render card
 function renderCard(cardData) {
   const cardView = createCard(cardData);
   const section = new Section({}, "#cards__list");
   section.addItem(cardView);
 }
 
-// declare a function to handle image click
 function handleImageClick({ name, link }) {
   // open the popup with the image
   popupWithImage.open({ link, name });
 }
 
-// EVENT HANDLERS
+// =========  EVENT HANDLERS  ========= //
 
 // Handles edit form submit
 function handleProfileEditSubmit({ title, description }) {
@@ -188,26 +193,46 @@ function handleNewCardSubmit(name, link) {
 
 // handles deleting card
 function handleDeleteCard(card) {
+  // open the delete card popup
+  deleteCardPopup.open();
+  deleteCardPopup.setSubmitCallback(() => {
+    api
+      .deleteCard(card.getId())
+      .then(() => {
+        card.deleteCard();
+        deleteCardPopup.close();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  });
+}
+
+// function to handle like button click
+function handleLikeClick(card) {
+  // const cardId = card.getId();
   api
-    .deleteCard(card.getId())
-    .then(() => {
-      deleteCardPopup.close();
+    .likeCard(card._id)
+    .then((data) => {
+      card._handleLikeIcon();
+      card._isLiked = true;
+      console.log("Card liked:", data);
     })
     .catch((err) => {
       console.error(err);
     });
 }
 
-// function to handle like button click
-function handleLikeClick(card) {
-  const cardId = card.getId();
+function handleUnlikeClick(card) {
   api
-    .likeCard(cardId)
+    .removeLike(card._id)
     .then((data) => {
-      console.log("Card liked:", data);
+      card._handleLikeIcon();
+      card._isLiked = false;
+      console.log("Card disliked:", data);
     })
     .catch((err) => {
-      console.error(err);
+      console.log(err);
     });
 }
 
@@ -228,7 +253,7 @@ function handleAvatarSubmit() {
     });
 }
 
-// EVENT LISTENERS
+// =========  EVENT LISTENERS  ========= //
 
 profileEditButton.addEventListener("click", () => {
   const userData = userInfo.getUserInfo();
@@ -244,6 +269,6 @@ profileAddButton.addEventListener("click", () => {
 });
 
 // Listens for avatar click, functions to open change avatar modal.
-profileAvatar.addEventListener("click", () => {
+profileAvatarButton.addEventListener("click", () => {
   changeAvatarPopup.open();
 });

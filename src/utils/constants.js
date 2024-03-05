@@ -18,6 +18,9 @@ export const imageCaption = document.querySelector(".modal__popup-caption");
 export const profileAddButton = document.querySelector("#profile-add-button");
 export const profileEditButton = document.querySelector("#profile-edit-button");
 export const profileAvatar = document.querySelector(".profile__image");
+export const profileAvatarButton = document.querySelector(
+  ".profile__edit-icon"
+);
 
 // FORM DATA
 export const cardTitleInput = document.querySelector("#card-title-input");

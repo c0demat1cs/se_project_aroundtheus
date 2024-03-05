@@ -25,8 +25,3 @@ This project involves creating an interactive webpage where users can add and re
 ## Repository
 
 ![repo](https://c0demat1cs.github.io/se_project_aroundtheus)
-
-## Plan on improving the project
-
-- universally create instances of validators for all forms in the project storing them inside one object formValidators.
-- make setInputValues in class PopupWithForm, which can insert data into inputs.

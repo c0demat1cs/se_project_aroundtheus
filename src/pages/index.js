@@ -20,6 +20,23 @@ import Api from "../components/Api.js";
 
 // =========  FORM VALIDATORS  ========= //
 
+// stores form validators
+const formValidators = {};
+
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector));
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(config, formElement);
+    // here you get the name of the form
+    const formName = formElement.getAttribute("name");
+
+    // here you store the validator using the `name` of the form
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  });
+};
+enableValidation(config); // calls enable validation
+
 // New Edit Form Validator instance
 const editFormValidator = new FormValidator(
   settings,
@@ -44,11 +61,16 @@ avatarFormValidator.enableValidation(); // call enable validation
 // =========  POPUP CLASS INSTANCES ========= //
 
 // New Popup Form for adding a card
-const newCardPopup = new PopupWithForm("#add-card-modal", (formData) => {
-  const name = formData.title;
-  const link = formData.link;
-  handleNewCardSubmit(name, link);
-});
+const newCardPopup = new PopupWithForm(
+  "#add-card-modal",
+  (formData, renderLoading) => {
+    const name = formData.title;
+    const link = formData.link;
+    handleNewCardSubmit(name, link, () => {
+      renderLoading();
+    });
+  }
+);
 newCardPopup.setEventListeners();
 
 // New Popup Form to edit profile

@@ -190,6 +190,7 @@ function handleImageClick({ name, link }) {
 
 // Handles edit form submit
 function handleProfileEditSubmit({ title, description }) {
+  editProfilePopup.renderLoading(true);
   api
     .editProfileInfo({
       name: title,
@@ -199,6 +200,7 @@ function handleProfileEditSubmit({ title, description }) {
       userInfo.setUserInfo(data.name, data.about);
       editFormValidator.disableSubmitButton();
       editProfilePopup.close();
+      editProfilePopup.renderLoading(false);
     })
     .catch((err) => {
       console.error(err);
@@ -207,6 +209,7 @@ function handleProfileEditSubmit({ title, description }) {
 
 // handles new card submission
 function handleNewCardSubmit(name, link) {
+  newCardPopup.renderLoading(true);
   api
     .addNewCard({
       name: name,
@@ -216,6 +219,7 @@ function handleNewCardSubmit(name, link) {
       renderCard(data);
       cardFormValidator.disableSubmitButton();
       newCardPopup.close();
+      newCardPopup.renderLoading(false);
     })
     .catch((err) => {
       console.error(err);
@@ -241,12 +245,11 @@ function handleDeleteCard(card) {
 
 // function to handle like button click
 function handleLikeClick(card) {
-  // const cardId = card.getId();
   api
     .likeCard(card._id)
     .then((data) => {
-      card._handleLikeIcon();
-      card._isLiked = true;
+      card.handleLikeIcon();
+      card.isLiked = true;
       console.log("Card liked:", data);
     })
     .catch((err) => {
@@ -258,8 +261,8 @@ function handleUnlikeClick(card) {
   api
     .removeLike(card._id)
     .then((data) => {
-      card._handleLikeIcon();
-      card._isLiked = false;
+      card.handleLikeIcon();
+      card.isLiked = false;
       console.log("Card disliked:", data);
     })
     .catch((err) => {
@@ -269,15 +272,17 @@ function handleUnlikeClick(card) {
 
 // handles avatar form submit with api
 function handleAvatarSubmit(formData) {
+  changeAvatarPopup.renderLoading(true);
   const avatar = formData.link;
   api
     .updateAvatar({
-      avatar: avatar,
+      avatar,
     })
     .then((data) => {
       userInfo.setAvatar(data.avatar);
       avatarFormValidator.disableSubmitButton();
       changeAvatarPopup.close();
+      changeAvatarPopup.renderLoading(false);
     })
     .catch((err) => {
       console.error(err);

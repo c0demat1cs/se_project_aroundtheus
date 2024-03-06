@@ -10,7 +10,7 @@ export default class Card {
     this._name = name;
     this._link = link;
     this._id = _id;
-    this._isLiked = isLiked;
+    this.isLiked = isLiked;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
     this._handleDeleteCard = _handleDeleteCard;
@@ -58,14 +58,14 @@ export default class Card {
   _setLikeState() {
     // if the button is liked
     // show the state of the button
-    if (this._isLiked === true) {
+    if (this.isLiked === true) {
       this._likeButton.classList.add("card__like-button_active");
     } else {
       this._likeButton.classList.remove("card__like-button_active");
     }
   }
 
-  _handleLikeIcon = () => {
+  handleLikeIcon = () => {
     this._likeButton.classList.toggle("card__like-button_active");
   };
 
@@ -73,7 +73,7 @@ export default class Card {
   // fetch each element , add listener
   _setEventListeners() {
     this._likeButton.addEventListener("click", () => {
-      if (this._isLiked === true) {
+      if (this.isLiked === true) {
         this._handleUnlikeClick(this);
       } else {
         this._handleLikeClick(this);

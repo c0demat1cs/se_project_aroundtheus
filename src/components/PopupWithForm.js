@@ -40,7 +40,7 @@ class PopupWithForm extends Popup {
   // handle form submit
   _formSubmitHandler(evt) {
     evt.preventDefault();
-    this._handleFormSubmit(this._getInputValues(), this.renderLoading(this));
+    this._handleFormSubmit(this._getInputValues());
   }
 
   // closes and resets the form

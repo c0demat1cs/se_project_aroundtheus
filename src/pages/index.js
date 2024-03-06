@@ -12,7 +12,6 @@ import {
   profileEditButton,
   profileAvatarButton,
   profileTitleInput,
-  profileAvatar,
   profileDescriptionInput,
 } from "../utils/constants.js";
 import Api from "../components/Api.js";
@@ -21,21 +20,21 @@ import Api from "../components/Api.js";
 // =========  FORM VALIDATORS  ========= //
 
 // stores form validators
-// const formValidators = {};
+const formValidators = {};
 
-// const enableValidation = (config) => {
-//   const formList = Array.from(document.querySelectorAll(config.formSelector));
-//   formList.forEach((formElement) => {
-//     const validator = new FormValidator(config, formElement);
-//     // here you get the name of the form
-//     const formName = formElement.getAttribute("name");
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector));
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(config, formElement);
+    // here you get the name of the form
+    const formName = formElement.getAttribute("name");
 
-//     // here you store the validator using the `name` of the form
-//     formValidators[formName] = validator;
-//     validator.enableValidation();
-//   });
-// };
-// enableValidation(config); // calls enable validation
+    // here you store the validator using the `name` of the form
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  });
+};
+enableValidation(settings); // calls enable validation
 
 // New Edit Form Validator instance
 const editFormValidator = new FormValidator(
@@ -269,14 +268,14 @@ function handleUnlikeClick(card) {
 }
 
 // handles avatar form submit with api
-function handleAvatarSubmit() {
-  const avatar = document.querySelector("#avatar-link-input").value;
+function handleAvatarSubmit(formData) {
+  const avatar = formData.link;
   api
     .updateAvatar({
       avatar: avatar,
     })
     .then((data) => {
-      profileAvatar.src = data.avatar;
+      userInfo.setAvatar(data.avatar);
       avatarFormValidator.disableSubmitButton();
       changeAvatarPopup.close();
     })

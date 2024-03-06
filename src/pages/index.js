@@ -21,21 +21,21 @@ import Api from "../components/Api.js";
 // =========  FORM VALIDATORS  ========= //
 
 // stores form validators
-const formValidators = {};
+// const formValidators = {};
 
-const enableValidation = (config) => {
-  const formList = Array.from(document.querySelectorAll(config.formSelector));
-  formList.forEach((formElement) => {
-    const validator = new FormValidator(config, formElement);
-    // here you get the name of the form
-    const formName = formElement.getAttribute("name");
+// const enableValidation = (config) => {
+//   const formList = Array.from(document.querySelectorAll(config.formSelector));
+//   formList.forEach((formElement) => {
+//     const validator = new FormValidator(config, formElement);
+//     // here you get the name of the form
+//     const formName = formElement.getAttribute("name");
 
-    // here you store the validator using the `name` of the form
-    formValidators[formName] = validator;
-    validator.enableValidation();
-  });
-};
-enableValidation(config); // calls enable validation
+//     // here you store the validator using the `name` of the form
+//     formValidators[formName] = validator;
+//     validator.enableValidation();
+//   });
+// };
+// enableValidation(config); // calls enable validation
 
 // New Edit Form Validator instance
 const editFormValidator = new FormValidator(
@@ -108,6 +108,8 @@ const userInfo = new UserInfo(
   ".profile__image"
 );
 
+// =========  SECTION  ========= //
+
 // =========  APIs  ========= //
 
 // Instance of Api
@@ -119,19 +121,28 @@ const api = new Api({
   },
 });
 
+const section = new Section(
+  {
+    renderer: (data) => {
+      section.addItem(createCard(data));
+    },
+  },
+  ".cards__list"
+);
+
 // fetch and render initial cards
 api
   .getInitialCards()
   .then((result) => {
-    // Instance of Section
-    let section = new Section(
-      {
-        items: result.reverse(),
-        renderer: createCard,
-      },
-      "#cards__list"
-    );
-    section.renderItems(result);
+    // // Instance of Section
+    // let section = new Section(
+    //   {
+    //     items: result.reverse(),
+    //     renderer: createCard,
+    //   },
+    //   "#cards__list"
+    // );
+    section.renderItems(result.reverse());
   })
   .catch((err) => {
     console.error(err); // log the error to the console
@@ -142,7 +153,6 @@ api
   .getUserInfo()
   .then((result) => {
     // update UI to reflect the user info from the db
-    // console.log(result);
     userInfo.setUserInfo(result.name, result.about);
     userInfo.setAvatar(result.avatar);
   })
@@ -154,6 +164,12 @@ api
 
 // =========  FUNCTIONS  ========= //
 
+function renderCard(cardData) {
+  const cardView = createCard(cardData);
+  // const section = new Section({}, "#cards__list");
+  section.addItem(cardView);
+}
+
 function createCard(cardData) {
   const card = new Card(
     cardData,
@@ -164,12 +180,6 @@ function createCard(cardData) {
     handleUnlikeClick
   );
   return card.getView();
-}
-
-function renderCard(cardData) {
-  const cardView = createCard(cardData);
-  const section = new Section({}, "#cards__list");
-  section.addItem(cardView);
 }
 
 function handleImageClick({ name, link }) {

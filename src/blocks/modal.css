@@ -78,6 +78,10 @@
   margin-bottom: 54px;
 }
 
+.modal__heading_small-margin {
+  margin-bottom: 20px;
+}
+
 .modal__form {
   display: flex;
   flex-direction: column;

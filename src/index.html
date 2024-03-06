@@ -20,19 +20,22 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            src="<%=require('./images/Avatar.png')%>"
-            alt="Avatar"
-            class="profile__image"
-          />
+          <div class="profile__image-container">
+            <img alt="Avatar" class="profile__image" />
+            <button
+              class="profile__edit-icon"
+              id="profile-edit-icon"
+              type="button"
+            ></button>
+          </div>
           <div class="profile__info">
-            <h1 class="profile__title">Jacques Cousteau</h1>
+            <h1 class="profile__title"></h1>
             <button
               class="profile__edit-button"
               id="profile-edit-button"
               type="button"
             ></button>
-            <p class="profile__description">Explorer</p>
+            <p class="profile__description"></p>
           </div>
           <button
             class="profile__add-button"
@@ -113,7 +116,35 @@
         </form>
       </div>
     </div>
-
+    <!-- DELETE CARD MODAL -->
+    <div class="modal" id="delete-card-modal">
+      <div class="modal__container">
+        <button class="modal__close" id="delete-card-close-button"></button>
+        <p class="modal__heading modal__heading_small-margin">Are you sure?</p>
+        <form class="modal__form" id="delete-card-form" name="delete-card-form">
+          <button class="modal__button">Yes</button>
+        </form>
+      </div>
+    </div>
+    <!-- CHANGE AVATAR MODAL -->
+    <div class="modal" id="avatar-modal">
+      <div class="modal__container">
+        <button class="modal__close" id="avatar-close-button"></button>
+        <p class="modal__heading">Change profile picture</p>
+        <form class="modal__form" id="avatar-form" name="avatar-form">
+          <input
+            class="modal__input modal__input_type_link"
+            type="url"
+            id="avatar-link-input"
+            name="link"
+            placeholder="Image link"
+            required
+          />
+          <span class="modal__error" id="avatar-link-input-error"></span>
+          <button class="modal__button modal__button_disabled">Save</button>
+        </form>
+      </div>
+    </div>
     <!-- IMAGE MODAL  -->
     <div class="modal" id="image-modal">
       <figure class="modal__image-container">
@@ -122,7 +153,6 @@
         <p class="modal__popup-caption"></p>
       </figure>
     </div>
-
     <template id="card-template">
       <li class="places__item card">
         <img src="" alt="" class="card__image" />

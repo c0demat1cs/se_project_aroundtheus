@@ -1,0 +1,2 @@
+To make changes to the project, call the npm run deploy command. 
+The changes will appear on the site. 
